@@ -13,6 +13,15 @@ const firebaseConfig = {
 };
 
   const okapp = firebase.initializeApp(firebaseConfig)
+  const firestore = okapp.firestore()
+  export const database ={
+    folders: firestore.collection('folders'),
+    files: firestore.collection('files'),
+    formatDoc: doc => {
+      return {id: doc.id, ...doc.data()}
+    },
+    getCurrrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp
+  }
 
   export const auth = okapp.auth()
 

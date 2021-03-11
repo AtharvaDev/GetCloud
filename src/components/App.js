@@ -8,6 +8,8 @@ import PrivateRoute from "./authentication/PrivateRoute";
 import Signup from "./authentication/Signup";
 import UpdateProfile from "./authentication/UpdateProfile";
 import Profile from "./authentication/Profile";
+import NavbarComponent from "./getCloud/Navbar";
+import Dashboard from "./getCloud/Dashboard";
 
 function App() {
   return (
@@ -16,10 +18,11 @@ function App() {
         <AuthProvider>
           <Switch>
             {/* getCloud */}
-            
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/folder/:folderId" component={Dashboard}/>
 
             {/* Profile */}
-            <PrivateRoute exact path="/user" component={Profile} />
+            <PrivateRoute path="/user" component={Profile} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
 
             {/* Auth */}
