@@ -10,6 +10,15 @@ export default function AddFolderBtn({ currentFolder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const { currentUser } = useAuth();
+  // const [fold, setFold] = useState([])
+
+  //////////////
+  // let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
+  // if (currentFolder) path = [...path, ...currentFolder.path];
+
+  // let fold = path.map(folder =>  folder.name)
+  // console.log(fold.join('/'))
+  ////////////////////
 
   function openModal() {
     setOpen(true);
@@ -23,14 +32,17 @@ export default function AddFolderBtn({ currentFolder }) {
 
     if (currentFolder == null) return;
 
-  
+    const path = [...currentFolder.path];
+    if (currentFolder !== ROOT_FOLDER) {
+      path.push({ name: currentFolder.name, id: currentFolder.id });
+    }
 
     //create a new folder here
     database.folders.add({
       name: name,
       parentId: currentFolder.id,
       userId: currentUser.uid,
-      // path: path,
+      path: path,
       createdAt: database.getCurrrentTimeStamp(),
     });
 
@@ -43,6 +55,11 @@ export default function AddFolderBtn({ currentFolder }) {
         <FontAwesomeIcon icon={faFolderPlus}></FontAwesomeIcon>
       </Button>
       {/* {console.log(currentUser)}{" "} */}
+      
+
+    
+
+      {/* {console.log(path)} */}
 
       <Modal show={open} onHide={closeModal}>
         <Form onSubmit={handleSubmit}>

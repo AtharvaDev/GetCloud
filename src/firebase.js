@@ -25,6 +25,8 @@ const firebaseConfig = {
 
   export const auth = okapp.auth()
 
+  export const storage = okapp.storage()
+
   export default okapp
 
 

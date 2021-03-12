@@ -7,7 +7,7 @@ import { faFolder } from "@fortawesome/free-solid-svg-icons";
 export default function Folder({ folder }) {
   return (
     <Button
-      to={{
+      to={{   
         pathname: `/folder/${folder.id}`,
         state: { folder: folder },
       }}
