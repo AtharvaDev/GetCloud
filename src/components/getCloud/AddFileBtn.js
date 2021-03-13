@@ -99,7 +99,7 @@ function AddFileBtn({ currentFolder }) {
                 database.files.add({
                   url: url,
                   name: file.name,
-                  createdAt: database.getCurrentTimestamp(),
+                  createdAt: database.getCurrrentTimeStamp(),
                   folderId: currentFolder.id,
                   userId: currentUser.uid,
                 });

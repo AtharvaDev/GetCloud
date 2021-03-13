@@ -55,6 +55,7 @@ export function useFolder(folderId = null, folder = null) {
 
   useEffect(() => {
     if (folderId == null) {
+      
       return dispatch({
         type: ACTIONS.UPDATE_FOLDER,
         payload: { folder: ROOT_FOLDER },
@@ -73,7 +74,7 @@ export function useFolder(folderId = null, folder = null) {
       .catch(() => {
         // 1.15.41 must create a page called page not found u r not authorised to vist here
         dispatch({
-          type: ACTIONS.UPDATE_FOLDER,
+          type: ACTIONS.UPDATE_FOLDER,  
           payload: { folder: ROOT_FOLDER },
         });
       });

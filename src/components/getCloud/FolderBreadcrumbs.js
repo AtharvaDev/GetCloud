@@ -1,17 +1,22 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { ROOT_FOLDER } from "../../hooks/useFolder";
 
 export default function FolderBreadcrumbs({ currentFolder }) {
+  const { globalDarkTheme } = useAuth();
+
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
   if (currentFolder) path = [...path, ...currentFolder.path];
+  //   { globalDarkTheme ? 'flex-grow-1 outline-light': 'flex-grow-1 outline-dark'}
+  // "bg-white p-0 m-1"
 
   return (
     <div className="w-100">
       <Breadcrumb
         className="flex-grow-1"
-        listProps={{ className: "bg-white p-0 m-1" }}
+        listProps={{ className: globalDarkTheme ? 'bg-dark p-0 m-1': 'bg-white p-0 m-1k' }}
       >
         {/* {console.log(path)} */}
         {path.map((folder, index) => (

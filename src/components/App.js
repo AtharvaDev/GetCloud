@@ -10,8 +10,10 @@ import UpdateProfile from "./authentication/UpdateProfile";
 import Profile from "./authentication/Profile";
 import NavbarComponent from "./getCloud/Navbar";
 import Dashboard from "./getCloud/Dashboard";
+import ChangeMode from "./theme/ChangeMode";
 
 function App() {
+  
   return (
     <>
       <Router>

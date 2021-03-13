@@ -1,0 +1,7 @@
+1. make spotify ui
+2. delete
+3. update
+4. search
+5. voice enabled 
+6. total storage
+7. sort by 
