@@ -5,11 +5,14 @@ import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import { ROOT_FOLDER } from "../../hooks/useFolder";
+import SidebarOption from "./sidebars/SidebarOption";
 
 export default function AddFolderBtn({ currentFolder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const { currentUser } = useAuth();
+  const { globalDarkTheme } = useAuth();
+
   // const [fold, setFold] = useState([])
 
   //////////////
@@ -48,25 +51,32 @@ export default function AddFolderBtn({ currentFolder }) {
 
     setName("");
     closeModal();
+
+    // <button className="w-100 bg-transparent" style={{ border:"none", padding:"0px"}} onClick={openModal} >
+    //     <SidebarOption title="Add Folder" icon={faFolderPlus}></SidebarOption>
+    //   </button>
   }
   return (
     <>
-      <Button onClick={openModal} variant="outline-success" size="sm">
-        <FontAwesomeIcon icon={faFolderPlus}></FontAwesomeIcon>
-      </Button>
+      <button
+        className="w-100 bg-transparent"
+        style={{ border: "none", padding: "0px", outline: "none" }}
+        onClick={openModal}
+      >
+        <SidebarOption title="New Folder" icon={faFolderPlus}></SidebarOption>
+      </button>
       {/* {console.log(currentUser)}{" "} */}
-      
-
-    
 
       {/* {console.log(path)} */}
 
       <Modal show={open} onHide={closeModal}>
         <Form onSubmit={handleSubmit}>
-          <Modal.Body>
+          <Modal.Body className={globalDarkTheme ? "bg-dark" : "bg-light"}>
             <Form.Group>
               <Form.Label>Folder Name</Form.Label>
               <Form.Control
+                className={globalDarkTheme ? "text-white bg-dark" : "bg-light"}
+                placeholder="Enter the name of new folder here"
                 type="text"
                 required
                 value={name}
@@ -74,7 +84,7 @@ export default function AddFolderBtn({ currentFolder }) {
               ></Form.Control>
             </Form.Group>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className={globalDarkTheme ? "bg-dark" : "bg-light"}>
             <Button variant="secondary" onClick={closeModal}>
               Close
             </Button>

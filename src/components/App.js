@@ -11,6 +11,7 @@ import Profile from "./authentication/Profile";
 import NavbarComponent from "./getCloud/Navbar";
 import Dashboard from "./getCloud/Dashboard";
 import ChangeMode from "./theme/ChangeMode";
+import Home from "./getCloud/Home";
 
 function App() {
   
@@ -20,8 +21,8 @@ function App() {
         <AuthProvider>
           <Switch>
             {/* getCloud */}
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute path="/folder/:folderId" component={Dashboard}/>
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute path="/folder/:folderId" component={Home}/>
 
             {/* Profile */}
             <PrivateRoute path="/user" component={Profile} />

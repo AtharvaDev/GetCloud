@@ -1,0 +1,43 @@
+/* this is a body */
+.dashboard {
+  flex: 0.8;
+  height: 100vh;
+  overflow-x: scroll;
+}
+
+.dashboard__light {
+  background: linear-gradient(white, #f8f9fa);
+}
+
+.dashboard__dark {
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
+}
+
+
+.folder__file{
+  width: 33.33%;
+}
+
+/* Medium devices (landscape tablets, 600px and below) */
+@media only screen and (max-width: 600px) {
+
+  .folder__file{
+    width: 50%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and below) */
+@media only screen and (max-width: 768px) {
+  .folder__file{
+    width: 50%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1250px) {
+  .folder__file{
+    width: 25%;
+  }
+}
+
+

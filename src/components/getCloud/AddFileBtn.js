@@ -1,4 +1,4 @@
-import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
+import { faFileImport, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
@@ -7,6 +7,7 @@ import { ROOT_FOLDER } from "../../hooks/useFolder";
 import { v4 as uuidV4 } from "uuid";
 import reactDom from "react-dom";
 import { ProgressBar, Toast } from "react-bootstrap";
+import SidebarOption from "./sidebars/SidebarOption";
 
 function AddFileBtn({ currentFolder }) {
   const { currentUser } = useAuth();
@@ -112,8 +113,8 @@ function AddFileBtn({ currentFolder }) {
 
   return (
     <>
-      <label className="btn btn-outline-success btn-sm m-0 mr-2">
-        <FontAwesomeIcon icon={faFileUpload}></FontAwesomeIcon>
+      <label className="m-0">
+        <SidebarOption title={" Upload File"} icon={faFileImport}></SidebarOption>
 
         <input
           type="file"

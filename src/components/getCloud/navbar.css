@@ -1,0 +1,24 @@
+.Navbar__Search{
+    display: flex;
+    border: none;
+    border-radius: 30px;
+    align-items: center;
+    padding: 13px;
+
+}
+
+.Navbar__Search__input{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 9px;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+.Navbar__Search__input{
+   width: 70vw;
+}
+}

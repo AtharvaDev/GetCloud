@@ -1,0 +1,10 @@
+.respSidebar__logo{
+    height: 35px;
+
+}
+
+@media only screen and (max-width:600px){
+    .sidebar__logo{
+        display: none;
+    }
+}

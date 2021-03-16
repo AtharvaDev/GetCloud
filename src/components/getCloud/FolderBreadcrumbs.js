@@ -16,7 +16,11 @@ export default function FolderBreadcrumbs({ currentFolder }) {
     <div className="w-100">
       <Breadcrumb
         className="flex-grow-1"
-        listProps={{ className: globalDarkTheme ? 'bg-dark p-0 m-1': 'bg-white p-0 m-1k' }}
+        listProps={{
+          className: globalDarkTheme
+            ? "bg-transparent p-0 m-1"
+            : "bg-transparent p-0 m-1",
+        }}
       >
         {/* {console.log(path)} */}
         {path.map((folder, index) => (

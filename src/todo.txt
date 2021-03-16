@@ -5,3 +5,4 @@
 5. voice enabled 
 6. total storage
 7. sort by 
+8. Active navbar

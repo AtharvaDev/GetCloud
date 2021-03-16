@@ -1,0 +1,23 @@
+.sidebaroption {
+  display: flex;
+  height: 40px;
+  cursor: pointer;
+  /* align-items: center; */
+}
+
+.sidebaroption__dark {
+  color: grey;
+  transition: 200ms color ease-in;
+}
+.sidebaroption__dark:hover {
+  color: white;
+}
+
+.sidebaroption__light {
+  color: grey;
+  transition: 200ms color ease-in;
+}
+
+.sidebaroption__light:hover {
+  color: black;
+}

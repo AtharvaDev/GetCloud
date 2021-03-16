@@ -1,0 +1,30 @@
+.sidebar {
+  /* border: 1px solid black; */
+  height: 100vh;
+  flex: 0.2;
+  min-width: 230px;
+}
+
+.sidebar__logo {
+  /* object-fit: contain; */
+
+  height: 35px;
+  /* margin-right: auto; */
+}
+
+.sidebar__themebtn {
+  width: 100%;
+  align-items: center;
+}
+
+.sidebar__dark {
+  background: #040404;
+}
+
+.sidebar__light {
+  background: #f8f9fa;
+}
+
+.navbar__dark {
+  color: white;
+}
