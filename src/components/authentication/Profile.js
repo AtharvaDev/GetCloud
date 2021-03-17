@@ -25,7 +25,7 @@ export default function Profile() {
 
   return (
     <>
-          <div style={{ position: 'absolute'}}>
+          {/* <div style={{ position: 'absolute'}}>
 
       <Particles
         params={{
@@ -47,7 +47,7 @@ export default function Profile() {
           },
         }}
       />
-      </div>
+      </div> */}
       <CenteredContainer>
         {/* <NavbarComponent/> */}
         <Card>

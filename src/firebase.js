@@ -10,12 +10,14 @@ const firebaseConfig = {
   messagingSenderId: "481268351772",
   appId: "1:481268351772:web:8f7a307072a91d525db0d9",
   measurementId: "G-8SD3QDZ57G"
+
 };
 
   const okapp = firebase.initializeApp(firebaseConfig)
   const firestore = okapp.firestore()
   export const database ={
     folders: firestore.collection('folders'),
+    users: firestore.collection('users'),
     files: firestore.collection('files'),
     formatDoc: doc => {
       return {id: doc.id, ...doc.data()}

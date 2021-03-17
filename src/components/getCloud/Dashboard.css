@@ -18,6 +18,20 @@
   width: 33.33%;
 }
 
+.dashboard__welcome{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.dashboard__welcome > p {
+  font-size: xx-large;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
 /* Medium devices (landscape tablets, 600px and below) */
 @media only screen and (max-width: 600px) {
 

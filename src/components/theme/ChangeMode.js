@@ -16,14 +16,14 @@ function ChangeMode() {
     return <div />;
   }
   function changeTheme() {
-    console.log(theme);
+    // console.log(theme);
     if (theme === "light") {
       setGlobalDarkTheme(false)
-      console.log(globalDarkTheme)
+      // console.log(globalDarkTheme)
     } else {
-      console.log("dark is true");
+      // console.log("dark is true");
       setGlobalDarkTheme(true)
-      console.log(globalDarkTheme)
+      // console.log(globalDarkTheme)
 
     }
   }

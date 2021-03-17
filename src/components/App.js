@@ -12,6 +12,7 @@ import NavbarComponent from "./getCloud/Navbar";
 import Dashboard from "./getCloud/Dashboard";
 import ChangeMode from "./theme/ChangeMode";
 import Home from "./getCloud/Home";
+import Landing from "./landing/Landing";
 
 function App() {
   
@@ -21,7 +22,7 @@ function App() {
         <AuthProvider>
           <Switch>
             {/* getCloud */}
-            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/folder/:folderId" component={Home}/>
 
             {/* Profile */}
@@ -32,6 +33,10 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />
+
+            {/* Landing page */}
+            <Route path="/" component={Landing}/>
+
           </Switch>
         </AuthProvider>
       </Router>

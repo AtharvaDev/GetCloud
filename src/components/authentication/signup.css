@@ -1,0 +1,30 @@
+
+
+.signup__row__left{
+    flex: 0.5;
+    padding-right: 20px;
+    text-align: center;
+}
+
+.signup__row__right{
+    flex: 0.5;
+
+    border-left: 1px solid lightgray;
+    padding-left: 20px;
+}
+
+.signup__profileUrl{
+    
+    height: 170px;
+    width: 170px;
+    border: 1px solid black;
+   margin: auto;
+    
+}
+
+.signup__profileUrl__upload{
+    background-color: lightgray ;
+    border-radius: 15px;
+    width: 200px;
+    margin: auto;
+}

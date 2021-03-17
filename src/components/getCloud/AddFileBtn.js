@@ -56,7 +56,7 @@ function AddFileBtn({ currentFolder }) {
     const uploadTask = storage
       .ref(`/files/${currentUser.uid}/${filePath}`)
       .put(file);
-    console.log(file);
+    // console.log(file);
     uploadTask.on(
       "state_changed",
       (snapshot) => {

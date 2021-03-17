@@ -1,3 +1,13 @@
+.NavbarComponent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
 .Navbar__Search{
     display: flex;
     border: none;
@@ -14,6 +24,30 @@
     padding-left: 9px;
 }
 
+.navbar__userData{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.navbar__userData__profileUrl{
+    height: 55px;
+    width: 55px;
+    border: 1px solid black;
+   margin-left: auto;
+}
+
+.navbar__userData__name{
+    margin-left: 10px;
+    font-size: x-large;
+    text-transform: capitalize;
+    justify-content: center;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -21,4 +55,13 @@
 .Navbar__Search__input{
    width: 70vw;
 }
+
+.NavbarComponent{
+    flex-direction: column-reverse; 
+}
+
+.navbar__userData{
+    padding-bottom: 20px;
+}
+
 }
