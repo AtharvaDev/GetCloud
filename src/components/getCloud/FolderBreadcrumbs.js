@@ -9,8 +9,9 @@ export default function FolderBreadcrumbs({ currentFolder }) {
 
   let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
   if (currentFolder) path = [...path, ...currentFolder.path];
-  //   { globalDarkTheme ? 'flex-grow-1 outline-light': 'flex-grow-1 outline-dark'}
-  // "bg-white p-0 m-1"
+ 
+
+  
 
   return (
     <div className="w-100">

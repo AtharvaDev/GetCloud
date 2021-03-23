@@ -19,6 +19,7 @@ const firebaseConfig = {
     folders: firestore.collection('folders'),
     users: firestore.collection('users'),
     files: firestore.collection('files'),
+    db: firestore,
     formatDoc: doc => {
       return {id: doc.id, ...doc.data()}
     },

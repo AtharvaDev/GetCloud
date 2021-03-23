@@ -49,6 +49,8 @@ export default function AddFolderBtn({ currentFolder }) {
       createdAt: database.getCurrrentTimeStamp(),
     });
 
+    
+
     setName("");
     closeModal();
 

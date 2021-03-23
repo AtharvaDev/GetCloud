@@ -56,12 +56,16 @@ function AddFileBtn({ currentFolder }) {
     const uploadTask = storage
       .ref(`/files/${currentUser.uid}/${filePath}`)
       .put(file);
-    // console.log(file);
+    console.log(file);
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
         const progress = snapshot.bytesTransferred / snapshot.totalBytes;
         setUploadingFiles((prevUploadingFiles) => {
+          // console.log(prevUploadingFiles)
+          // console.log(UploadingFiles)
+
           return prevUploadingFiles.map((uploadingFile) => {
             if (uploadingFile.id === id) {
               return { ...uploadingFile, progress: progress };
@@ -95,7 +99,11 @@ function AddFileBtn({ currentFolder }) {
             .then((existingFiles) => {
               const existingFile = existingFiles.docs[0];
               if (existingFile) {
-                existingFile.ref.update({ url: url });
+                existingFile.ref.update({
+                  url: url,
+                  size: file.size / 1000000,
+                  createdAt: database.getCurrrentTimeStamp(),
+                });
               } else {
                 database.files.add({
                   url: url,
@@ -103,18 +111,26 @@ function AddFileBtn({ currentFolder }) {
                   createdAt: database.getCurrrentTimeStamp(),
                   folderId: currentFolder.id,
                   userId: currentUser.uid,
+                  size: file.size / 1000000,
+                  type: file.type,
+                  email: currentUser.email,
                 });
               }
             });
         });
       }
     );
+
+
   }
 
   return (
     <>
       <label className="m-0">
-        <SidebarOption title={" Upload File"} icon={faFileImport}></SidebarOption>
+        <SidebarOption
+          title={" Upload File"}
+          icon={faFileImport}
+        ></SidebarOption>
 
         <input
           type="file"

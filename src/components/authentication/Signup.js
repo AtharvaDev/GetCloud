@@ -18,13 +18,17 @@ export default function Signup() {
   const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imageAsUrl, setImageAsUrl] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
-  );
+  const [imageAsUrl, setImageAsUrl] = useState("");
   const [imageAsFile, setImageAsFile] = useState();
 
   const [profilePicData, setProfilePicData] = useState("");
   const history = useHistory();
+
+  if (imageAsUrl === "") {
+    setImageAsUrl(
+      "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
+    );
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,24 +52,22 @@ export default function Signup() {
   useEffect(() => {
     // try {
     auth.onAuthStateChanged((authUser) => {
-      console.log(imageAsUrl);
       console.log("atharva testing this before", authUser);
 
       if (authUser) {
         if (authUser.displayName) {
           //don't do anything
+          console.log(authUser.displayName)
         } else {
           return authUser.updateProfile({
             displayName: usernameRef.current.value,
-            photoURL: imageAsUrl,
+            // photoURL: imageAsUrl,
           });
         }
       }
     });
-    // } catch (e) {
-    // console.log(e)
-    // }
-  }, [imageAsUrl, auth]);
+    
+  }, [imageAsFile, imageAsUrl, auth]);
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
@@ -94,11 +96,29 @@ export default function Signup() {
     // console.log(imageAsUrl);
   };
 
+  if (currentUser) {
+    database.users.doc(currentUser.uid).set({
+      userId: currentUser.uid,
+      name: usernameRef.current.value,
+      email: emailRef.current.value,
+      pass: passwordRef.current.value,
+      createdAt: database.getCurrrentTimeStamp(),
+      profilePic: imageAsUrl,
+    });
+
+    currentUser.updateProfile({
+      photoURL: imageAsUrl,
+    });
+    console.log(imageAsUrl, "now in curruser");
+
+  }
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}
     >
+      {console.log(imageAsFile)}
       <div className="w-100" style={{ maxWidth: "600px" }}>
         <Card>
           <Card.Body>

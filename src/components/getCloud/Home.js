@@ -1,4 +1,5 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import Dashboard from "./Dashboard";
 import "./Home.css";
 import RespSideBar from "./sidebars/responsive/RespSideBar";
@@ -14,10 +15,13 @@ function Home() {
         <Dashboard />
       </div>
       <div className="bigScreenOnly__sidebar">
+
         <div className="home__body">
           <Sidebar />
           <Dashboard />
+
         </div>
+
       </div>
     </div>
   );

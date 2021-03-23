@@ -18,6 +18,8 @@ import AddFileBtn from "../AddFileBtn";
 import AddFolderBtn from "../AddFolderBtn";
 import sidebar from "./sidebar.css";
 import SidebarOption from "./SidebarOption";
+import Skeleton from "react-loading-skeleton";
+import Storage from "./Storage";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
@@ -28,6 +30,9 @@ function Sidebar() {
     folderId,
     state.folder
   );
+  function homeLinkrefreshPage() {
+    window.location.href="/home";
+  } 
 
   return (
     <div
@@ -65,7 +70,14 @@ function Sidebar() {
                 icon={faUserCircle}
               ></SidebarOption>
             </Button>
-            <SidebarOption title="Home" icon={faHome}></SidebarOption>
+            <Button
+              onClick={homeLinkrefreshPage}
+              as={Link}
+              variant="none"
+              className="m-0 p-0 w-100"
+            >
+              <SidebarOption title="Home" icon={faHome}></SidebarOption>
+            </Button>
             <SidebarOption title="Recent" icon={faClock}></SidebarOption>
             <SidebarOption title="Starred" icon={faStar}></SidebarOption>
             <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
@@ -76,8 +88,8 @@ function Sidebar() {
               globalDarkTheme ? "bg-light mr-2 w-100" : "bg-dark mr-2 w-100"
             }
           />
-          <SidebarOption title="Storage:" icon={faCloud}></SidebarOption>
-          <p className="">1.2 GB of 20 GB used</p>
+          
+          <Storage/>
         </div>
       </Navbar>
     </div>

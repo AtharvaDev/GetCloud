@@ -9,3 +9,4 @@
 9. Guest login option
 8. login upgrade
 9. Subscriptions page
+10. Active navbar

@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import ChangeMode from "../theme/ChangeMode";
 import NavbarComponent from "./Navbar";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { database } from "../../firebase";
 
 export default function Dashboard() {
   const { globalDarkTheme, currentUser } = useAuth();
@@ -28,6 +29,8 @@ export default function Dashboard() {
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
+
+ 
 
   // console.log(state.folder);
   return (
