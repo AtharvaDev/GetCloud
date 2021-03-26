@@ -10,3 +10,5 @@
 8. login upgrade
 9. Subscriptions page
 10. Active navbar
+11. cursor animation 
+    (https://youtu.be/TpwpAYi-p2w)

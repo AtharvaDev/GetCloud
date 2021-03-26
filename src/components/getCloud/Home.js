@@ -15,13 +15,10 @@ function Home() {
         <Dashboard />
       </div>
       <div className="bigScreenOnly__sidebar">
-
         <div className="home__body">
           <Sidebar />
           <Dashboard />
-
         </div>
-
       </div>
     </div>
   );

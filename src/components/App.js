@@ -13,9 +13,11 @@ import Dashboard from "./getCloud/Dashboard";
 import ChangeMode from "./theme/ChangeMode";
 import Home from "./getCloud/Home";
 import Landing from "./landing/Landing";
+import "animate.css/animate.css";
+import Recent from "./getCloud/recentmenu/Recent";
+import "./App.css"
 
 function App() {
-  
   return (
     <>
       <Router>
@@ -23,7 +25,8 @@ function App() {
           <Switch>
             {/* getCloud */}
             <PrivateRoute path="/home" component={Home} />
-            <PrivateRoute path="/folder/:folderId" component={Home}/>
+            <PrivateRoute path="/recent" component={Recent} />
+            <PrivateRoute path="/folder/:folderId" component={Home} />
 
             {/* Profile */}
             <PrivateRoute path="/user" component={Profile} />
@@ -35,8 +38,7 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
 
             {/* Landing page */}
-            <Route path="/" component={Landing}/>
-
+            <Route path="/" component={Landing} />
           </Switch>
         </AuthProvider>
       </Router>

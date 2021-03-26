@@ -24,13 +24,9 @@ export default function Dashboard() {
   );
   const [loading, setLoading] = useState(true);
 
-
-
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
-
- 
 
   // console.log(state.folder);
   return (
@@ -43,7 +39,6 @@ export default function Dashboard() {
     >
       {/* <ChangeMode /> */}
       <NavbarComponent></NavbarComponent>
-        
 
       <Container fluid>
         <div className="d-flex align-items-center">
@@ -55,6 +50,7 @@ export default function Dashboard() {
 
         {loading === false ? (
           folder &&
+          childFiles.length === 0 &&
           childFolders.length === 0 &&
           folder.name === "Home" && (
             <div className="dashboard__welcome">
@@ -82,16 +78,16 @@ export default function Dashboard() {
               <div
                 key={childFolder.id}
                 // style={{ width: "33.3%" }}
-                className="folder__file p-2"
+                className="folder__file p-2 animate_zoomIn"
               >
                 <Folder folder={childFolder} />
               </div>
             ))}
           </div>
-        )}  
+        )}
 
         {childFolders.length > 0 && childFiles.length > 0 && <hr />}
-        {childFolders.length > 0 && childFiles.length > 0 && (
+        {childFolders.length >= 0 && childFiles.length > 0 && (
           <div className="w-100 mt-4">Files</div>
         )}
 
@@ -101,7 +97,7 @@ export default function Dashboard() {
               <div
                 key={childFile.id}
                 // style={{ width: "250px" }}
-                className="folder__file p-2"
+                className="folder__file p-2 animate_zoomIn"
               >
                 <File file={childFile}></File>
               </div>

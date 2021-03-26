@@ -16,10 +16,10 @@ import { useFolder } from "../../../hooks/useFolder";
 import ChangeMode from "../../theme/ChangeMode";
 import AddFileBtn from "../AddFileBtn";
 import AddFolderBtn from "../AddFolderBtn";
-import sidebar from "./sidebar.css";
+import "./sidebar.css";
 import SidebarOption from "./SidebarOption";
-import Skeleton from "react-loading-skeleton";
 import Storage from "./Storage";
+import Recent from "../recentmenu/Recent";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
@@ -31,8 +31,8 @@ function Sidebar() {
     state.folder
   );
   function homeLinkrefreshPage() {
-    window.location.href="/home";
-  } 
+    window.location.href = "/home";
+  }
 
   return (
     <div
@@ -51,7 +51,7 @@ function Sidebar() {
           alt=""
         />
 
-        <div className="sidebar__themebtn mt-2 mb-3">
+        <div className="sidebar__themebtn mt-2 mb-5">
           <ChangeMode />
         </div>
 
@@ -71,14 +71,24 @@ function Sidebar() {
               ></SidebarOption>
             </Button>
             <Button
-              onClick={homeLinkrefreshPage}
+              // onClick={homeLinkrefreshPage}
               as={Link}
+              to="/home"
               variant="none"
               className="m-0 p-0 w-100"
             >
               <SidebarOption title="Home" icon={faHome}></SidebarOption>
             </Button>
-            <SidebarOption title="Recent" icon={faClock}></SidebarOption>
+            <Button
+              // onClick={Recent}
+              as={Link}
+              to="/recent"
+              variant="none"
+              className="m-0 p-0 w-100"
+            >
+              <SidebarOption title="Recent" icon={faClock}></SidebarOption>
+            </Button>
+
             <SidebarOption title="Starred" icon={faStar}></SidebarOption>
             <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
           </div>
@@ -88,8 +98,8 @@ function Sidebar() {
               globalDarkTheme ? "bg-light mr-2 w-100" : "bg-dark mr-2 w-100"
             }
           />
-          
-          <Storage/>
+
+          <Storage />
         </div>
       </Navbar>
     </div>

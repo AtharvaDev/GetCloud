@@ -12,8 +12,8 @@ function SidebarOption({ title, icon, event }) {
       <div
         className={
           globalDarkTheme
-            ? "sidebaroption sidebaroption__dark"
-            : "sidebaroption sidebaroption__light"
+            ? "sidebaroption sidebaroption__dark   rounded p-2 mb-1"
+            : "sidebaroption sidebaroption__light   rounded p-2 mb-1 "
         }
       >
         <FontAwesomeIcon

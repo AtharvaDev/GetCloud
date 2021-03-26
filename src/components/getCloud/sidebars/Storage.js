@@ -27,7 +27,8 @@ function Storage() {
   return (
     <div>
       <SidebarOption title="Storage:" icon={faCloud}></SidebarOption>
-      <p className="">{totalSize} GB of 20 GB used</p>
+      
+      <p className="animate__animated animate__backInUp">{totalSize} GB of 20 GB used</p>
     </div>
   );
 }

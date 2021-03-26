@@ -9,6 +9,7 @@ import reactDom from "react-dom";
 import { ProgressBar, Toast } from "react-bootstrap";
 import SidebarOption from "./sidebars/SidebarOption";
 
+
 function AddFileBtn({ currentFolder }) {
   const { currentUser } = useAuth();
   const [uploadingFiles, setUploadingFiles] = useState([]);
@@ -126,7 +127,7 @@ function AddFileBtn({ currentFolder }) {
 
   return (
     <>
-      <label className="m-0">
+      <label className="m-0 w-100">
         <SidebarOption
           title={" Upload File"}
           icon={faFileImport}
@@ -138,9 +139,10 @@ function AddFileBtn({ currentFolder }) {
           style={{ opacity: 0, position: "absolute", left: "-999999px" }}
         />
       </label>
+      <div className="animate__animated animate__backInRight">
       {uploadingFiles.length > 0 &&
         reactDom.createPortal(
-          <div
+          <div className="animate__animated animate__zoomInDown animate__rotateInDownRight"
             style={{
               position: "absolute",
               bottom: "1rem",
@@ -165,7 +167,7 @@ function AddFileBtn({ currentFolder }) {
                 >
                   {file.name}
                 </Toast.Header>
-                <Toast.Body>
+                <Toast.Body style={{minWidth: "150px", textAlign: "center"}}>
                   <ProgressBar
                     animated={!file.error}
                     variant={file.error ? "danger" : "primary"}
@@ -182,6 +184,7 @@ function AddFileBtn({ currentFolder }) {
           </div>,
           document.body
         )}
+        </div>
     </>
   );
 }
