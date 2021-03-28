@@ -3,14 +3,13 @@ import { Container } from "react-bootstrap";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useLocation, useParams } from "react-router";
 import { useAuth } from "../../../contexts/AuthContext";
-import { database } from "../../../firebase";
 import { useFolder } from "../../../hooks/useFolder";
 import File from "../File";
 import Folder from "../Folder";
 import FolderBreadcrumbs from "../FolderBreadcrumbs";
 import NavbarComponent from "../Navbar";
 
-function Staredmenu() {
+function Trashmenu() {
   const { globalDarkTheme, currentUser } = useAuth();
   const { folderId } = useParams();
   const { state = {} } = useLocation();
@@ -18,38 +17,13 @@ function Staredmenu() {
     folderId,
     state.folder
   );
-  const [starFolders, setStarfolders] = useState([]);
-  const [starFiles, setStarFiles] = useState([]);
-
   const [loading, setLoading] = useState(true);
-  // console.log(childFolders)
+
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
-
-  // childFolderss = []
-  useEffect(() => {
-    database.folders
-      .where("isStared", "==", true)
-      .where("userId", "==", currentUser.uid)
-      .orderBy("createdAt")
-      .onSnapshot((snapshot) => {
-        setStarfolders(snapshot.docs.map(database.formatDoc));
-        console.log(starFolders);
-      });
-
-    database.files
-      .where("isStared", "==", true)
-      .where("userId", "==", currentUser.uid)
-      .orderBy("createdAt")
-      .onSnapshot((snapshot) => {
-        setStarFiles(snapshot.docs.map(database.formatDoc));
-        // console.log(starFiles);
-      });
-  }, []);
-
   return (
-    <>
+    <div>
       <div
         className={
           globalDarkTheme
@@ -70,20 +44,11 @@ function Staredmenu() {
 
           {loading === false ? (
             folder &&
-            starFolders.length === 0 &&
-            starFiles.length === 0 && (
+            childFiles.length === 0 &&
+            childFolders.length === 0 &&
+            folder.name === "Home" && (
               <div className="dashboard__welcome">
-                <div>
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/Filestar.png?alt=media&token=24f1b68c-499f-4a67-aa86-cdb4f5f8e101"
-                    alt=""
-                    width="100px"
-                  />
-                </div>
-
-                <p>Hi {currentUser.displayName}</p>
-                <h5>There are no starred files or folders.</h5>
-                <h6>Add stars to things that you want to easily find later.</h6>
+                <p>Hi {currentUser.displayName}, Welcome to the CloudApp</p>
 
                 {/* <h2>You can start with</h2> */}
               </div>
@@ -100,10 +65,10 @@ function Staredmenu() {
             </SkeletonTheme>
           )}
 
-          {starFolders.length > 0 && (
+          {childFolders.length > 0 && (
             <div className="d-flex flex-wrap">
               <div className="w-100 mt-4">Folders</div>
-              {starFolders.map((childFolder) => (
+              {childFolders.map((childFolder) => (
                 <div
                   key={childFolder.id}
                   // style={{ width: "33.3%" }}
@@ -115,14 +80,14 @@ function Staredmenu() {
             </div>
           )}
 
-          {starFolders.length > 0 && starFiles.length > 0 && <hr />}
-          {starFolders.length >= 0 && starFiles.length > 0 && (
+          {childFolders.length > 0 && childFiles.length > 0 && <hr />}
+          {childFolders.length >= 0 && childFiles.length > 0 && (
             <div className="w-100 mt-4">Files</div>
           )}
 
-          {starFiles.length > 0 && (
+          {childFiles.length > 0 && (
             <div className="d-flex flex-wrap">
-              {starFiles.map((childFile) => (
+              {childFiles.map((childFile) => (
                 <div
                   key={childFile.id}
                   // style={{ width: "250px" }}
@@ -135,8 +100,8 @@ function Staredmenu() {
           )}
         </Container>
       </div>
-    </>
+    </div>
   );
 }
 
-export default Staredmenu;
+export default Trashmenu;

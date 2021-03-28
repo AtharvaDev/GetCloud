@@ -17,6 +17,7 @@ import "animate.css/animate.css";
 import Recent from "./getCloud/menuRecent/Recent";
 import "./App.css"
 import Stared from "./getCloud/menuStarted/Stared";
+import Trash from "./getCloud/menuTrash/Trash";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/recent" component={Recent} />
             <PrivateRoute path="/stared" component={Stared} />
+            <PrivateRoute path="/trash" component={Trash} />
 
             <PrivateRoute path="/folder/:folderId" component={Home} />
 

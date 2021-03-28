@@ -4,10 +4,7 @@ import { Button, DropdownButton, Form, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
-  faEllipsisV,
   faFolder,
-  faHelicopter,
-  faRecycle,
   faStar,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -19,6 +16,7 @@ export default function Folder({ folder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [star, setStar] = useState("");
+  const [trash, setTrash] = useState("");
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
 
@@ -31,7 +29,9 @@ export default function Folder({ folder }) {
 
   // console.log(database.folders.doc(folder.id).get.then(doc => { doc.data()}))
 
-  database.folders
+  //below databse code checks the current isStared in docs and updates the setStar
+  useEffect(() => {
+    database.folders
     .doc(folder.id)
     .get()
     .then((doc) => {
@@ -45,6 +45,23 @@ export default function Folder({ folder }) {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
+  }, [folder])
+
+
+      // database.folders
+      // .doc(folder.id)
+      // .get()
+      // .then((doc) => {
+      //   if (doc.exists) {
+      //     setStar(doc.data().isStared);
+      //     // console.log(star);
+      //   } else {
+      //     console.log("No such document!");
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.log("Error getting document:", error);
+      // });
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -80,130 +97,135 @@ export default function Folder({ folder }) {
       <Button
         to={{
           pathname: `/folder/${folder.id}`,
-
           state: { folder: folder },
         }}
         // variant="outline-dark"
         variant={globalDarkTheme ? "outline-light" : "outline-dark"}
-        style={{ border: "none", outline: "none", minWidth:"0" }}
+        style={{ border: "none", outline: "none", minWidth: "0" }}
         className="d-flex w-100 align-items-center text-truncate"
         as={Link}
       >
-            <FontAwesomeIcon icon={faFolder} className="mr-2" />
-            <p className="text-truncate mb-0">
-              {folder.name}
-              </p>
-          {/* <div className=""></div> */}
+        <FontAwesomeIcon icon={faFolder} className="mr-2" />
+        <p className="text-truncate mb-0">{folder.name}</p>
+        {/* <div className=""></div> */}
       </Button>
       <div>
-
-      <Dropdown
-        style={{ border: "none", outline: "none", borderRadius: "100%" }}
-        variant={globalDarkTheme ? "outline-light" : "outline-dark"}
-      >
-        <Dropdown.Toggle
-          variant="none"
-          style={
-            globalDarkTheme
-              ? { border: "none", outline: "none", color: "white" }
-              : { border: "none", outline: "none", color: "black" }
-          }
-
-          // style={{ border: "none", outline: "none" }}
+        <Dropdown
+          style={{ border: "none", outline: "none", borderRadius: "100%" }}
+          variant={globalDarkTheme ? "outline-light" : "outline-dark"}
         >
-          <Dropdown.Menu
-            className={
+          <Dropdown.Toggle
+            variant="none"
+            style={
               globalDarkTheme
-                ? "bg-dark text-white drop_menu"
-                : "bg-light text-dark drop_menu"
+                ? { border: "none", outline: "none", color: "white" }
+                : { border: "none", outline: "none", color: "black" }
             }
+
+            // style={{ border: "none", outline: "none" }}
           >
-            <Dropdown.Item
-              // href="#/action-1"
+            <Dropdown.Menu
               className={
-                globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
+                globalDarkTheme
+                  ? "bg-dark text-white drop_menu"
+                  : "bg-light text-dark drop_menu"
               }
-              onClick={openModal}
             >
-              <FontAwesomeIcon icon={faEdit} className="mr-2" />
-              Rename
-            </Dropdown.Item>
-            {/* Rename starts //////////////////////////////////////////*/}
-            <Modal show={open} onHide={closeModal}>
-              <Form onSubmit={handleSubmit}>
-                <Modal.Body
-                  className={globalDarkTheme ? "bg-dark" : "bg-light"}
-                >
-                  <Form.Group>
-                    <Form.Label>New Folder Name</Form.Label>
-                    <Form.Control
-                      className={
-                        globalDarkTheme ? "text-white bg-dark" : "bg-light"
-                      }
-                      placeholder={`Renaming - ${folder.name}`}
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
-                </Modal.Body>
-                <Modal.Footer
-                  className={globalDarkTheme ? "bg-dark" : "bg-light"}
-                >
-                  <Button variant="secondary" onClick={closeModal}>
-                    Close
-                  </Button>
-                  <Button variant="success" type="submit">
-                    Rename Folder
-                  </Button>
-                </Modal.Footer>
-              </Form>
-            </Modal>
-            {/* Rename ends //////////////////////////////////////////// */}
-
-            {/* Started starts ///////////////////////////////////////// */}
-
-            {star ? (
               <Dropdown.Item
-                onClick={handleRemoveStared}
-                // href="#/action-2"
+                // href="#/action-1"
+                className={
+                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
+                }
+                onClick={openModal}
+              >
+                <FontAwesomeIcon icon={faEdit} className="mr-2" />
+                Rename
+              </Dropdown.Item>
+              {/* Rename starts //////////////////////////////////////////*/}
+              <Modal show={open} onHide={closeModal}>
+                <Form onSubmit={handleSubmit}>
+                  <Modal.Body
+                    className={globalDarkTheme ? "bg-dark" : "bg-light"}
+                  >
+                    <Form.Group>
+                      <Form.Label>New Folder Name</Form.Label>
+                      <Form.Control
+                        className={
+                          globalDarkTheme ? "text-white bg-dark" : "bg-light"
+                        }
+                        placeholder={`Renaming - ${folder.name}`}
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      ></Form.Control>
+                    </Form.Group>
+                  </Modal.Body>
+                  <Modal.Footer
+                    className={globalDarkTheme ? "bg-dark" : "bg-light"}
+                  >
+                    <Button variant="secondary" onClick={closeModal}>
+                      Close
+                    </Button>
+                    <Button variant="success" type="submit">
+                      Rename Folder
+                    </Button>
+                  </Modal.Footer>
+                </Form>
+              </Modal>
+              {/* Rename ends //////////////////////////////////////////// */}
+
+              {/* Started starts ///////////////////////////////////////// */}
+
+              {star ? (
+                <Dropdown.Item
+                  onClick={handleRemoveStared}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon
+                    color="gold"
+                    icon={faStar}
+                    className="mr-2"
+                  />
+                  Remove star
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={handleAddStared}
+                  // href="#/action-2"
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faStar} className="mr-2" />
+                  Add to Starred
+                </Dropdown.Item>
+              )}
+
+              {/* Started ends ///////////////////////////////////////// */}
+              <Dropdown.Divider />
+
+              {/* Trash starts ///////////////////////////////////////// */}
+              <Dropdown.Item
                 className={
                   globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
                 }
               >
-                <FontAwesomeIcon color="gold" icon={faStar} className="mr-2" />
-                Remove star
+                <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
+                Delete
               </Dropdown.Item>
-            ) : (
-              <Dropdown.Item
-                onClick={handleAddStared}
-                // href="#/action-2"
-                className={
-                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
-                }
-              >
-                <FontAwesomeIcon icon={faStar} className="mr-2" />
-                Add to Starred
-              </Dropdown.Item>
-            )}
 
-            {/* Started ends ///////////////////////////////////////// */}
-            <Dropdown.Divider />
-            <Dropdown.Item
-              // href="#/action-3"
-              className={
-                globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
-              }
-            >
-              <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
-              Delete
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown.Toggle>
-      </Dropdown>
+              {/* Trash ends ///////////////////////////////////////// */}
+            </Dropdown.Menu>
+          </Dropdown.Toggle>
+        </Dropdown>
       </div>
-
     </div>
   );
 }

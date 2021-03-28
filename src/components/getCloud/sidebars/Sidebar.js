@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Nav } from "react-bootstrap";
 import React from "react";
 import { Navbar } from "react-bootstrap";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useFolder } from "../../../hooks/useFolder";
 import ChangeMode from "../../theme/ChangeMode";
@@ -58,46 +58,69 @@ function Sidebar() {
           <div className="">
             <AddFolderBtn currentFolder={folder}></AddFolderBtn>
             <AddFileBtn currentFolder={folder}></AddFileBtn>
-            <Button
-              as={Link}
-              to="/user"
-              variant="none"
-              className="m-0 p-0 w-100"
-            >
-              <SidebarOption
-                title="Profile"
-                icon={faUserCircle}
-              ></SidebarOption>
-            </Button>
-            <Button
-              // onClick={homeLinkrefreshPage}
-              as={Link}
-              to="/home"
-              variant="none"
-              className="m-0 p-0 w-100"
-            >
-              <SidebarOption title="Home" icon={faHome}></SidebarOption>
-            </Button>
-            <Button
-              // onClick={Recent}
-              as={Link}
-              to="/recent"
-              variant="none"
-              className="m-0 p-0 w-100"
-            >
-              <SidebarOption title="Recent" icon={faClock}></SidebarOption>
-            </Button>
+            <>
+              <Nav.Item>
+                <Nav.Link
+                  // as={Link}
+                  href="/user"
+                  variant="none"
+                  className="m-0 p-0 w-100"
+                >
+                  <SidebarOption
+                    title="Profile"
+                    icon={faUserCircle}
+                  ></SidebarOption>
+                </Nav.Link>
+              </Nav.Item>
 
-            <Button
-              as={Link}
-              to="/stared"
-              variant="none"
-              className="m-0 p-0 w-100"
-            >
-              <SidebarOption title="Starred" icon={faStar}></SidebarOption>
-            </Button>
+              <Nav.Item>
+                <Nav.Link
+                  // onClick={homeLinkrefreshPage}
+                  as={Link}
+                  to="/home"
+                  variant="none"
+                  className="m-0 p-0 w-100"
+                >
+                  <SidebarOption title="Home" icon={faHome}></SidebarOption>
+                </Nav.Link>
+              </Nav.Item>
 
-            <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
+              <Nav.Item>
+                <Nav.Link
+                  // onClick={Recent}
+                  as={Link}
+                  activeClassName="sidebar__active"
+                  to="/recent"
+                  variant="none"
+                  className="m-0 p-0 w-100"
+                >
+                  <SidebarOption title="Recent" icon={faClock}></SidebarOption>
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item>
+                <Nav.Link
+                  as={Link}
+                  activeClassName="sidebar__active"
+                  to="/stared"
+                  variant="none"
+                  className="m-0 p-0 w-100"
+                >
+                  <SidebarOption title="Starred" icon={faStar}></SidebarOption>
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item>
+                <Nav.Link
+                  activeClassName="sidebar__active"
+                  href="/trash"
+                  variant="none"
+                  className="m-0 p-0 w-100"
+                >
+                  <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
+                </Nav.Link>
+              </Nav.Item>
+            </>
           </div>
 
           <hr

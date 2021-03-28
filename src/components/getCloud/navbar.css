@@ -66,4 +66,8 @@
     padding-bottom: 20px;
 }
 
+.mobile__search{
+    min-width: 100%;
+}
+
 }

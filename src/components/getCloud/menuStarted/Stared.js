@@ -5,8 +5,7 @@ import Staredmenu from "./Staredmenu";
 
 function Stared() {
   return (
-    <div>
-      <div>
+    <>
         <div className="home">
           <div className="mobileOnly__sidebar">
             <RespSideBar />
@@ -19,8 +18,7 @@ function Stared() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
 

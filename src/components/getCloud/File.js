@@ -6,7 +6,7 @@ import {
   faStar,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Button, Dropdown, Form, Modal } from "react-bootstrap";
 import Folder from "./Folder";
@@ -39,21 +39,25 @@ export default function File({ file }) {
   }
 
   function handleSubmit() {}
-  // console.log(file);
-  database.files
-    .doc(file.id)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        setStar(doc.data().isStared);
-        // console.log(star);
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
+
+  //below databse code checks the current isStared in docs and updates the setStar
+  useEffect(() => {
+    database.files
+      .doc(file.id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log(doc.id)
+          setStar(doc.data().isStared);
+          // console.log(star);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }, [file]);
 
   // console.log(file);
   function handleAddStared() {

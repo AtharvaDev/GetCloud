@@ -1,21 +1,20 @@
 import React from "react";
 import RespSideBar from "../sidebars/responsive/RespSideBar";
 import Sidebar from "../sidebars/Sidebar";
-import Recentmenu from "./Recentmenu";
+import Trashmenu from "./Trashmenu";
 
-function Recent() {
+function Trash() {
   return (
-    < >
+    <>
       <div className="home">
         <div className="mobileOnly__sidebar">
           <RespSideBar />
-          <Recentmenu />
+          <Trashmenu />
         </div>
         <div className="bigScreenOnly__sidebar">
-          <div className="home__body">  
-          
-            <Sidebar />
-            <Recentmenu />
+          <div className="home__body">
+            <Sidebar   />
+            <Trashmenu   />
           </div>
         </div>
       </div>
@@ -23,4 +22,4 @@ function Recent() {
   );
 }
 
-export default Recent;
+export default Trash;

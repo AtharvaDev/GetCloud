@@ -6,6 +6,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useAuth } from "../../contexts/AuthContext";
 import ChangeMode from "../theme/ChangeMode";
 import "./navbar.css";
+import Search from "./Search";
 
 function NavbarComponent() {
   const { globalDarkTheme, currentUser } = useAuth();
@@ -24,28 +25,8 @@ function NavbarComponent() {
             : "NavbarComponent bg-transparent text-dark pt-10"
         }
       >
-        <div
-          className={
-            globalDarkTheme
-              ? "Navbar__Search bg-dark"
-              : "Navbar__Search bg-light"
-          }
-        >
-          <FontAwesomeIcon
-            className=""
-            icon={faSearch}
-            size="lg"
-          ></FontAwesomeIcon>
-
-          <input
-            className={
-              globalDarkTheme
-                ? "Navbar__Search__input text-light"
-                : "Navbar__Search__input text-dark"
-            }
-            placeholder="Search"
-          />
-        </div>
+          
+        <Search/>
 
         {loading === true ? (
           <SkeletonTheme

@@ -23,6 +23,7 @@ export default function Signup() {
 
   const [profilePicData, setProfilePicData] = useState("");
   const history = useHistory();
+  
 
   if (imageAsUrl === "") {
     setImageAsUrl(
