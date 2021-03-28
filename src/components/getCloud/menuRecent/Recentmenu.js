@@ -23,7 +23,7 @@ function Recentmenu() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
   return (
-    <div>
+    <>
       <div
         className={
           globalDarkTheme
@@ -100,7 +100,7 @@ function Recentmenu() {
           )}
         </Container>
       </div>
-    </div>
+    </>
   );
 }
 

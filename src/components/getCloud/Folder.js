@@ -5,12 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
   faFolder,
+  faMicrophone,
   faStar,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../contexts/AuthContext";
 import { Dropdown } from "react-bootstrap";
 import { database } from "../../firebase";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 export default function Folder({ folder }) {
   const [open, setOpen] = useState(false);
@@ -19,6 +23,12 @@ export default function Folder({ folder }) {
   const [trash, setTrash] = useState("");
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
+  const { transcript, resetTranscript } = useSpeechRecognition();
+
+  useEffect(() => {
+    setName(transcript);
+    // console.log(transcript);
+  }, [transcript]);
 
   function openModal() {
     setOpen(true);
@@ -32,36 +42,39 @@ export default function Folder({ folder }) {
   //below databse code checks the current isStared in docs and updates the setStar
   useEffect(() => {
     database.folders
-    .doc(folder.id)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        setStar(doc.data().isStared);
-        // console.log(star);
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  }, [folder])
+      .doc(folder.id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setStar(doc.data().isStared);
+          // console.log(star);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }, [folder]);
 
+  // database.folders
+  // .doc(folder.id)
+  // .get()
+  // .then((doc) => {
+  //   if (doc.exists) {
+  //     setStar(doc.data().isStared);
+  //     // console.log(star);
+  //   } else {
+  //     console.log("No such document!");
+  //   }
+  // })
+  // .catch((error) => {
+  //   console.log("Error getting document:", error);
+  // });
 
-      // database.folders
-      // .doc(folder.id)
-      // .get()
-      // .then((doc) => {
-      //   if (doc.exists) {
-      //     setStar(doc.data().isStared);
-      //     // console.log(star);
-      //   } else {
-      //     console.log("No such document!");
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.log("Error getting document:", error);
-      // });
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -149,16 +162,23 @@ export default function Folder({ folder }) {
                   >
                     <Form.Group>
                       <Form.Label>New Folder Name</Form.Label>
-                      <Form.Control
-                        className={
-                          globalDarkTheme ? "text-white bg-dark" : "bg-light"
-                        }
-                        placeholder={`Renaming - ${folder.name}`}
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      ></Form.Control>
+                      <div className="d-flex">
+                        <Form.Control
+                          className={
+                            globalDarkTheme ? "text-white bg-dark" : "bg-light"
+                          }
+                          placeholder={`Renaming - ${folder.name}`}
+                          type="text"
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        ></Form.Control>
+                        <Button onClick={SpeechRecognition.startListening}>
+                          <FontAwesomeIcon
+                            icon={faMicrophone}
+                          ></FontAwesomeIcon>
+                        </Button>
+                      </div>
                     </Form.Group>
                   </Modal.Body>
                   <Modal.Footer

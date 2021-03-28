@@ -1,17 +1,31 @@
 import { Button, Form, Modal } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+import { faFolderPlus, faMagic, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import { ROOT_FOLDER } from "../../hooks/useFolder";
 import SidebarOption from "./sidebars/SidebarOption";
+import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 export default function AddFolderBtn({ currentFolder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
+  const { transcript, resetTranscript } = useSpeechRecognition();
+
+  useEffect(() => {
+    setName(transcript);
+    // console.log(transcript);
+  }, [transcript]);
+
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null;
+  }
 
   // const [fold, setFold] = useState([])
 
@@ -27,6 +41,7 @@ export default function AddFolderBtn({ currentFolder }) {
     setOpen(true);
   }
   function closeModal() {
+    setName("")
     setOpen(false);
   }
 
@@ -59,6 +74,7 @@ export default function AddFolderBtn({ currentFolder }) {
     //     <SidebarOption title="Add Folder" icon={faFolderPlus}></SidebarOption>
     //   </button>
   }
+
   return (
     <>
       <button
@@ -77,16 +93,24 @@ export default function AddFolderBtn({ currentFolder }) {
           <Modal.Body className={globalDarkTheme ? "bg-dark" : "bg-light"}>
             <Form.Group>
               <Form.Label>Folder Name</Form.Label>
-              <Form.Control
-                className={globalDarkTheme ? "text-white bg-dark" : "bg-light"}
-                placeholder="Enter the name of new folder here"
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
+              <div className="d-flex">
+                <Form.Control
+                  className={
+                    globalDarkTheme ? "text-white bg-dark" : "bg-light"
+                  }
+                  placeholder="Enter the name of new folder here"
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+                <Button onClick={SpeechRecognition.startListening}>
+                  <FontAwesomeIcon icon={faMicrophone}></FontAwesomeIcon>
+                </Button>
+              </div>
             </Form.Group>
           </Modal.Body>
+
           <Modal.Footer className={globalDarkTheme ? "bg-dark" : "bg-light"}>
             <Button variant="secondary" onClick={closeModal}>
               Close

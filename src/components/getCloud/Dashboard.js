@@ -27,6 +27,7 @@ export default function Dashboard() {
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
+  // console.log(currentUser)
 
   // console.log(state.folder);
   return (

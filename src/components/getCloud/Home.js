@@ -7,6 +7,7 @@ import Sidebar from "./sidebars/Sidebar";
 import Test from "./Test";
 
 function Home() {
+  // console.log()
   return (
     <div className="home">
       <div className="mobileOnly__sidebar">

@@ -7,13 +7,14 @@ function Landing() {
     <div>
       Landing page...{" "}
       <Alert variant="success">
-        <p> current deployment version 4.7</p>
-        changelog 4.7 <br></br>
+        <p> current deployment version 4.8</p>
+        changelog 4.8 <br></br>
          1. Added Stared Menu <br></br>
          2. Added Rename Menu <br></br>
          3. Animations fixed <br></br>
          4. Profile Loading fixed <br></br>
-         5. Used Storage fixed
+         5. Used Storage fixed<br></br>
+         6. search menu added
       </Alert>
       <Button as={Link} to="/login">
         login
