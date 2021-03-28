@@ -19,11 +19,10 @@ import AddFolderBtn from "../AddFolderBtn";
 import "./sidebar.css";
 import SidebarOption from "./SidebarOption";
 import Storage from "./Storage";
-import Recent from "../recentmenu/Recent";
+import Recent from "../menuRecent/Recent";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
-
   const { folderId } = useParams();
   const { state = {} } = useLocation();
   const { folder, childFolders, childFiles } = useFolder(
@@ -89,7 +88,15 @@ function Sidebar() {
               <SidebarOption title="Recent" icon={faClock}></SidebarOption>
             </Button>
 
-            <SidebarOption title="Starred" icon={faStar}></SidebarOption>
+            <Button
+              as={Link}
+              to="/stared"
+              variant="none"
+              className="m-0 p-0 w-100"
+            >
+              <SidebarOption title="Starred" icon={faStar}></SidebarOption>
+            </Button>
+
             <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
           </div>
 

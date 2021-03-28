@@ -20,7 +20,7 @@ function Storage() {
           
           setTotalSize(((size.toFixed(2))/1000).toFixed(2))
 
-          console.log(totalSize,"ok")
+          // console.log(totalSize,"ok")
       
     });
 

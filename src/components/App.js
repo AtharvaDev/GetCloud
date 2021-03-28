@@ -14,8 +14,9 @@ import ChangeMode from "./theme/ChangeMode";
 import Home from "./getCloud/Home";
 import Landing from "./landing/Landing";
 import "animate.css/animate.css";
-import Recent from "./getCloud/recentmenu/Recent";
+import Recent from "./getCloud/menuRecent/Recent";
 import "./App.css"
+import Stared from "./getCloud/menuStarted/Stared";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
             {/* getCloud */}
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/recent" component={Recent} />
+            <PrivateRoute path="/stared" component={Stared} />
+
             <PrivateRoute path="/folder/:folderId" component={Home} />
 
             {/* Profile */}

@@ -114,6 +114,7 @@ function AddFileBtn({ currentFolder }) {
                   userId: currentUser.uid,
                   size: file.size / 1000000,
                   type: file.type,
+                  isStared: false,
                   email: currentUser.email,
                 });
               }

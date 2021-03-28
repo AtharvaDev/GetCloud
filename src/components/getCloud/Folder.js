@@ -18,6 +18,7 @@ import { database } from "../../firebase";
 export default function Folder({ folder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const [star, setStar] = useState("");
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
 
@@ -28,15 +29,43 @@ export default function Folder({ folder }) {
     setOpen(false);
   }
 
+  // console.log(database.folders.doc(folder.id).get.then(doc => { doc.data()}))
+
+  database.folders
+    .doc(folder.id)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        setStar(doc.data().isStared);
+        // console.log(star);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
   function handleSubmit(e) {
     e.preventDefault();
     // console.log(folder.name, name)
     database.folders.doc(folder.id).update({
-      name: name
-    })
+      name: name,
+    });
     setName("");
     closeModal();
+  }
 
+  function handleAddStared() {
+    database.folders.doc(folder.id).update({
+      isStared: true,
+    });
+  }
+
+  function handleRemoveStared() {
+    database.folders.doc(folder.id).update({
+      isStared: false,
+    });
   }
 
   return (
@@ -56,18 +85,18 @@ export default function Folder({ folder }) {
         }}
         // variant="outline-dark"
         variant={globalDarkTheme ? "outline-light" : "outline-dark"}
-        style={{ border: "none", outline: "none" }}
-        className="text-truncate  w-100"
+        style={{ border: "none", outline: "none", minWidth:"0" }}
+        className="d-flex w-100 align-items-center text-truncate"
         as={Link}
       >
-        <div className="d-flex align-items-center justify-content-between">
-          <div className="">
             <FontAwesomeIcon icon={faFolder} className="mr-2" />
-            {folder.name}
-          </div>
-          <div className=""></div>
-        </div>
+            <p className="text-truncate mb-0">
+              {folder.name}
+              </p>
+          {/* <div className=""></div> */}
       </Button>
+      <div>
+
       <Dropdown
         style={{ border: "none", outline: "none", borderRadius: "100%" }}
         variant={globalDarkTheme ? "outline-light" : "outline-dark"}
@@ -95,7 +124,6 @@ export default function Folder({ folder }) {
                 globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
               }
               onClick={openModal}
-
             >
               <FontAwesomeIcon icon={faEdit} className="mr-2" />
               Rename
@@ -134,17 +162,34 @@ export default function Folder({ folder }) {
             </Modal>
             {/* Rename ends //////////////////////////////////////////// */}
 
-            <Dropdown.Item
-              // href="#/action-2"
-              className={
-                globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
-              }
-            >
-              <FontAwesomeIcon icon={faStar} className="mr-2" />
-              Add to Starred
-            </Dropdown.Item>
-            <Dropdown.Divider />
+            {/* Started starts ///////////////////////////////////////// */}
 
+            {star ? (
+              <Dropdown.Item
+                onClick={handleRemoveStared}
+                // href="#/action-2"
+                className={
+                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
+                }
+              >
+                <FontAwesomeIcon color="gold" icon={faStar} className="mr-2" />
+                Remove star
+              </Dropdown.Item>
+            ) : (
+              <Dropdown.Item
+                onClick={handleAddStared}
+                // href="#/action-2"
+                className={
+                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
+                }
+              >
+                <FontAwesomeIcon icon={faStar} className="mr-2" />
+                Add to Starred
+              </Dropdown.Item>
+            )}
+
+            {/* Started ends ///////////////////////////////////////// */}
+            <Dropdown.Divider />
             <Dropdown.Item
               // href="#/action-3"
               className={
@@ -157,6 +202,8 @@ export default function Folder({ folder }) {
           </Dropdown.Menu>
         </Dropdown.Toggle>
       </Dropdown>
+      </div>
+
     </div>
   );
 }

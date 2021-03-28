@@ -46,10 +46,11 @@ export default function AddFolderBtn({ currentFolder }) {
       parentId: currentFolder.id,
       userId: currentUser.uid,
       path: path,
+      isStared: false,
+      isTrash: false,
       createdAt: database.getCurrrentTimeStamp(),
+      email: currentUser.email,
     });
-
-    
 
     setName("");
     closeModal();

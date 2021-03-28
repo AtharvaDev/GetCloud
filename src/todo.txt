@@ -12,3 +12,5 @@
 10. Active navbar
 11. cursor animation 
     (https://youtu.be/TpwpAYi-p2w)
+
+12. share files
