@@ -5,6 +5,7 @@ import "./Home.css";
 import RespSideBar from "./sidebars/responsive/RespSideBar";
 import Sidebar from "./sidebars/Sidebar";
 import Test from "./Test";
+import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 
 function Home() {
   // console.log()
@@ -18,6 +19,7 @@ function Home() {
       <div className="bigScreenOnly__sidebar">
         <div className="home__body">
           <Sidebar />
+
           <Dashboard />
         </div>
       </div>

@@ -13,6 +13,7 @@ import ChangeMode from "../theme/ChangeMode";
 import NavbarComponent from "./Navbar";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { database } from "../../firebase";
+import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 
 export default function Dashboard() {
   const { globalDarkTheme, currentUser } = useAuth();

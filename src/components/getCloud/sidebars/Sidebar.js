@@ -20,6 +20,7 @@ import "./sidebar.css";
 import SidebarOption from "./SidebarOption";
 import Storage from "./Storage";
 import Recent from "../menuRecent/Recent";
+import VoiceEnabled from "../voiceEnabled/VoiceEnabled";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
@@ -39,6 +40,8 @@ function Sidebar() {
         globalDarkTheme ? "sidebar sidebar__dark" : "sidebar sidebar__light"
       }
     >
+      <VoiceEnabled />
+
       <Navbar className="flex-column" expand="lg">
         <img
           className="sidebar__logo mt-1"
@@ -61,8 +64,8 @@ function Sidebar() {
             <>
               <Nav.Item>
                 <Nav.Link
-                  // as={Link}
-                  href="/user"
+                  as={Link}
+                  to="/user"
                   variant="none"
                   className="m-0 p-0 w-100"
                 >
