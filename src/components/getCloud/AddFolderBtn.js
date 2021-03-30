@@ -1,7 +1,11 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus, faMagic, faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFolderPlus,
+  faMagic,
+  faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import { ROOT_FOLDER } from "../../hooks/useFolder";
@@ -10,6 +14,7 @@ import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { useHistory } from "react-router";
 
 export default function AddFolderBtn({ currentFolder }) {
   const [open, setOpen] = useState(false);
@@ -17,6 +22,7 @@ export default function AddFolderBtn({ currentFolder }) {
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
   const { transcript, resetTranscript } = useSpeechRecognition();
+  const history = useHistory();
 
   useEffect(() => {
     setName(transcript);
@@ -40,8 +46,10 @@ export default function AddFolderBtn({ currentFolder }) {
   function openModal() {
     setOpen(true);
   }
+  console.log(currentFolder);
+
   function closeModal() {
-    setName("")
+    setName("");
     setOpen(false);
   }
 

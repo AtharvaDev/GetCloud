@@ -40,10 +40,10 @@ export default function Dashboard() {
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
         setHomefolders(snapshot.docs.map(database.formatDoc));
-        snapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
+        // snapshot.forEach((doc) => {
+        //   // doc.data() is never undefined for query doc snapshots
+        //   console.log(doc.id, " => ", doc.data());
+        // });
       });
 
     database.files
@@ -59,7 +59,7 @@ export default function Dashboard() {
         setHomeFiles(snapshot.docs.map(database.formatDoc));
         // console.log(starFiles);
       });
-  }, []);
+  }, [folderId]);
 
   // console.log(state.folder);
   return (
@@ -104,7 +104,7 @@ export default function Dashboard() {
           </SkeletonTheme>
         )}
 
-        {homeFolders.length > 0 && (
+        {childFolders.length > 0 && (
           <div className="d-flex flex-wrap">
             <div className="w-100 mt-4">Folders</div>
             {childFolders.map((childFolder) =>
@@ -123,12 +123,12 @@ export default function Dashboard() {
           </div>
         )}
 
-        {homeFolders.length > 0 && homeFiles.length > 0 && <hr />}
-        {homeFolders.length >= 0 && homeFiles.length > 0 && (
+        {childFolders.length > 0 && childFiles.length > 0 && <hr />}
+        {childFolders.length > 0 && childFiles.length > 0 && (
           <div className="w-100 mt-4">Files</div>
         )}
 
-        {homeFiles.length > 0 && (
+        {childFiles.length > 0 && (
           <div className="d-flex flex-wrap">
             {childFiles.map((childFile) =>
               childFile.isTrash ? (

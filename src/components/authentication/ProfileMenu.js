@@ -9,7 +9,7 @@ import Test from "../getCloud/Test";
 
 export default function ProfileMenu() {
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, globalDarkTheme } = useAuth();
   const history = useHistory();
 
   async function handleLogout() {
@@ -48,44 +48,60 @@ export default function ProfileMenu() {
         }}
       />
       </div> */}
-      <CenteredContainer>
-        {/* <NavbarComponent/> */}
-        <Card>
-          <Card.Body>
-            <h2 className="text-center mb-4">Profile</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <div className="d-flex flex-column justify-content-center ">
-              {/* <div className="d-flex flex-column justify-content-center align-items-centerr"> */}
-              <img
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                className="signup__profileUrl rounded-circle"
-                src={currentUser.photoURL}
-              ></img>
-              {/* </div> */}
-              <br></br>
-              <div>
-                <strong>Email:</strong> {currentUser.email}{" "}
+      <div
+        className={
+          globalDarkTheme
+            ? "dashboard dashboard__dark p-2"
+            : "dashboard dashboard__light p-2 "
+        }
+      >
+        <CenteredContainer>
+          {/* <NavbarComponent/> */}
+          <Card>
+            <Card.Body
+              className={
+                globalDarkTheme ? "text-light bg-dark" : "text-dark bg-light"
+              }
+            >
+              <h2 className="text-center mb-4">Profile</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <div className="d-flex  flex-column justify-content-center ">
+                {/* <div className="d-flex flex-column justify-content-center align-items-centerr"> */}
+                <img
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                  className="signup__profileUrl rounded-circle"
+                  src={currentUser.photoURL}
+                ></img>
+                {/* </div> */}
+                <br></br>
+                <div>
+                  <strong>Name:</strong> {currentUser.displayName}{" "}
+                </div>
+                <div>
+                  <strong>Email:</strong> {currentUser.email}{" "}
+                </div>
               </div>
-              <div>
-                <strong>Name:</strong> {currentUser.displayName}{" "}
-              </div>
-            </div>
 
-            {console.log(currentUser)}
-            <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-              Update Profile
-            </Link>
-            <div className="w-100 mt-2">
-              <Button variant="danger" className="w-100" onClick={handleLogout}>
-                Log Out
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-      </CenteredContainer>
+              {console.log(currentUser)}
+              <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+                Update Profile
+              </Link>
+              <div className="w-100 mt-2">
+                <Button
+                  variant="danger"
+                  className="w-100"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        </CenteredContainer>
+      </div>
     </>
   );
 }

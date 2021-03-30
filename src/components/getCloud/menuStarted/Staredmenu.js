@@ -37,6 +37,10 @@ function Staredmenu() {
       .onSnapshot((snapshot) => {
         setStarfolders(snapshot.docs.map(database.formatDoc));
         // console.log(starFolders);
+         snapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
       });
 
     database.files
@@ -45,14 +49,14 @@ function Staredmenu() {
       .where("userId", "==", currentUser.uid)
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
+        // snapshot.forEach((doc) => {
+        //   // doc.data() is never undefined for query doc snapshots
+        //   console.log(doc.id, " => ", doc.data());
+        // });
         setStarFiles(snapshot.docs.map(database.formatDoc));
         // console.log(starFiles);
       });
-  }, [folder]);
+  }, []);
 
   return (
     <>

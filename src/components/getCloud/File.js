@@ -15,6 +15,7 @@ import Folder from "./Folder";
 import { database } from "../../firebase";
 import Clipboard from "react-clipboard.js";
 import { Alert } from "react-bootstrap";
+import { useShortenUrl } from "react-shorten-url";
 
 export default function File({ file }) {
   const { globalDarkTheme } = useAuth();
@@ -24,12 +25,17 @@ export default function File({ file }) {
   const [trash, setTrash] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const { currentUser } = useAuth();
+  const { loading, error, data } = useShortenUrl(file.url);
+  const [shortLink, setShortLink] = useState('')
 
   function openModal() {
     setOpen(true);
+
+    setShortLink(data.link)
   }
   function closeModal() {
     setOpen(false);
+    setShortLink('')
   }
 
   function diplayAlert() {
@@ -99,6 +105,8 @@ export default function File({ file }) {
         console.log("File successfully deleted!");
       });
   }
+
+  // console.log(file.url);
 
   return (
     <div
@@ -172,7 +180,7 @@ export default function File({ file }) {
                         // placeholder={`Renaming - ${Folder.name}`}
                         type="text"
                         required
-                        value={file.url}
+                        value={shortLink}
                       ></Form.Control>
                     </Form.Group>
                   </Modal.Body>
@@ -184,7 +192,7 @@ export default function File({ file }) {
                     </Button>
                     <Clipboard
                       className="btn btn-primary"
-                      data-clipboard-text={file.url}
+                      data-clipboard-text={shortLink}
                       onClick={diplayAlert}
                     >
                       copy to clipboard
@@ -246,18 +254,17 @@ export default function File({ file }) {
 
               {/* Trash starts ///////////////////////////////////////// */}
               {trash ? (
-                 <Dropdown.Item
-                 onClick={handlePermanentlyTrash}
-                 className={
-                   globalDarkTheme
-                     ? "bg-dark text-white"
-                     : "bg-light text-dark"
-                 }
-               >
-                 <FontAwesomeIcon icon={faTrash} className="mr-2" />
-                 Permanently Delete
-
-               </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={handlePermanentlyTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                  Permanently Delete
+                </Dropdown.Item>
               ) : (
                 <Dropdown.Item
                   onClick={handleAddTrash}
