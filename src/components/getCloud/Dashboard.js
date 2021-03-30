@@ -23,12 +23,43 @@ export default function Dashboard() {
     folderId,
     state.folder
   );
+  const [homeFolders, setHomefolders] = useState([]);
+  const [homeFiles, setHomeFiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
   // console.log(currentUser)
+
+  useEffect(() => {
+    database.folders
+      .where("parentId", "==", null)
+      .where("isTrash", "==", false)
+      .where("userId", "==", currentUser.uid)
+      .orderBy("createdAt")
+      .onSnapshot((snapshot) => {
+        setHomefolders(snapshot.docs.map(database.formatDoc));
+        snapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
+      });
+
+    database.files
+      .where("folderId", "==", null)
+      .where("isTrash", "==", false)
+      .where("userId", "==", currentUser.uid)
+      .orderBy("createdAt")
+      .onSnapshot((snapshot) => {
+        // snapshot.forEach((doc) => {
+        //   // doc.data() is never undefined for query doc snapshots
+        //   console.log(doc.id, " => ", doc.data());
+        // });
+        setHomeFiles(snapshot.docs.map(database.formatDoc));
+        // console.log(starFiles);
+      });
+  }, []);
 
   // console.log(state.folder);
   return (
@@ -52,8 +83,8 @@ export default function Dashboard() {
 
         {loading === false ? (
           folder &&
-          childFiles.length === 0 &&
-          childFolders.length === 0 &&
+          homeFolders.length === 0 &&
+          homeFiles.length === 0 &&
           folder.name === "Home" && (
             <div className="dashboard__welcome">
               <p>Hi {currentUser.displayName}, Welcome to the CloudApp</p>
@@ -73,37 +104,45 @@ export default function Dashboard() {
           </SkeletonTheme>
         )}
 
-        {childFolders.length > 0 && (
+        {homeFolders.length > 0 && (
           <div className="d-flex flex-wrap">
             <div className="w-100 mt-4">Folders</div>
-            {childFolders.map((childFolder) => (
-              <div
-                key={childFolder.id}
-                // style={{ width: "33.3%" }}
-                className="folder__file p-2 animate_zoomIn"
-              >
-                <Folder folder={childFolder} />
-              </div>
-            ))}
+            {childFolders.map((childFolder) =>
+              childFolder.isTrash ? (
+                <></>
+              ) : (
+                <div
+                  key={childFolder.id}
+                  // style={{ width: "33.3%" }}
+                  className="folder__file p-2 animate_zoomIn"
+                >
+                  <Folder folder={childFolder} />
+                </div>
+              )
+            )}
           </div>
         )}
 
-        {childFolders.length > 0 && childFiles.length > 0 && <hr />}
-        {childFolders.length >= 0 && childFiles.length > 0 && (
+        {homeFolders.length > 0 && homeFiles.length > 0 && <hr />}
+        {homeFolders.length >= 0 && homeFiles.length > 0 && (
           <div className="w-100 mt-4">Files</div>
         )}
 
-        {childFiles.length > 0 && (
+        {homeFiles.length > 0 && (
           <div className="d-flex flex-wrap">
-            {childFiles.map((childFile) => (
-              <div
-                key={childFile.id}
-                // style={{ width: "250px" }}
-                className="folder__file p-2 animate_zoomIn"
-              >
-                <File file={childFile}></File>
-              </div>
-            ))}
+            {childFiles.map((childFile) =>
+              childFile.isTrash ? (
+                <></>
+              ) : (
+                <div
+                  key={childFile.id}
+                  // style={{ width: "250px" }}
+                  className="folder__file p-2 animate_zoomIn"
+                >
+                  <File file={childFile}></File>
+                </div>
+              )
+            )}
           </div>
         )}
       </Container>

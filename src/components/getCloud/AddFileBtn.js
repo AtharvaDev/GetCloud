@@ -9,7 +9,6 @@ import reactDom from "react-dom";
 import { ProgressBar, Toast } from "react-bootstrap";
 import SidebarOption from "./sidebars/SidebarOption";
 
-
 function AddFileBtn({ currentFolder }) {
   const { currentUser } = useAuth();
   const [uploadingFiles, setUploadingFiles] = useState([]);
@@ -115,6 +114,7 @@ function AddFileBtn({ currentFolder }) {
                   size: file.size / 1000000,
                   type: file.type,
                   isStared: false,
+                  isTrash: false,
                   email: currentUser.email,
                 });
               }
@@ -122,8 +122,6 @@ function AddFileBtn({ currentFolder }) {
         });
       }
     );
-
-
   }
 
   return (
@@ -141,51 +139,54 @@ function AddFileBtn({ currentFolder }) {
         />
       </label>
       <div className="animate__animated animate__backInRight">
-      {uploadingFiles.length > 0 &&
-        reactDom.createPortal(
-          <div className="animate__animated animate__zoomInDown animate__rotateInDownRight"
-            style={{
-              position: "absolute",
-              bottom: "1rem",
-              right: "1rem",
-              maxWidth: "250px",
-            }}
-          >
-            {uploadingFiles.map((file) => (
-              <Toast
-                key={file.id}
-                onClose={() => {
-                  setUploadingFiles((prevUploadingFiles) => {
-                    return prevUploadingFiles.filter((uploadFile) => {
-                      return uploadFile.id !== file.id;
+        {uploadingFiles.length > 0 &&
+          reactDom.createPortal(
+            <div
+              className="animate__animated animate__zoomInDown animate__rotateInDownRight"
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                right: "1rem",
+                maxWidth: "250px",
+              }}
+            >
+              {uploadingFiles.map((file) => (
+                <Toast
+                  key={file.id}
+                  onClose={() => {
+                    setUploadingFiles((prevUploadingFiles) => {
+                      return prevUploadingFiles.filter((uploadFile) => {
+                        return uploadFile.id !== file.id;
+                      });
                     });
-                  });
-                }}
-              >
-                <Toast.Header
-                  closeButton={file.error}
-                  className="text-truncate w-100 d-block"
+                  }}
                 >
-                  {file.name}
-                </Toast.Header>
-                <Toast.Body style={{minWidth: "150px", textAlign: "center"}}>
-                  <ProgressBar
-                    animated={!file.error}
-                    variant={file.error ? "danger" : "primary"}
-                    now={file.error ? 100 : file.progress * 100}
-                    label={
-                      file.error
-                        ? "Error"
-                        : `${Math.round(file.progress * 100)}%`
-                    }
-                  />
-                </Toast.Body>
-              </Toast>
-            ))}
-          </div>,
-          document.body
-        )}
-        </div>
+                  <Toast.Header
+                    closeButton={file.error}
+                    className="text-truncate w-100 d-block"
+                  >
+                    {file.name}
+                  </Toast.Header>
+                  <Toast.Body
+                    style={{ minWidth: "150px", textAlign: "center" }}
+                  >
+                    <ProgressBar
+                      animated={!file.error}
+                      variant={file.error ? "danger" : "primary"}
+                      now={file.error ? 100 : file.progress * 100}
+                      label={
+                        file.error
+                          ? "Error"
+                          : `${Math.round(file.progress * 100)}%`
+                      }
+                    />
+                  </Toast.Body>
+                </Toast>
+              ))}
+            </div>,
+            document.body
+          )}
+      </div>
     </>
   );
 }

@@ -24,9 +24,19 @@ const VoiceEnabled = () => {
   function addAfile() {}
 
   const commands = [
-
     {
-      command: ["openstaad", "open star", "open favorites", "go to star", "go to favorites", "star", "go to favourite"],
+      command: [
+        "openstaad",
+        "open star",
+        "open favorites",
+        "go to star",
+        "go to start",
+        "go to favorites",
+        "star",
+        "go to favourite 30",
+        "go to favourite is",
+
+      ],
       callback: () => history.push("/stared"),
     },
     {
@@ -53,7 +63,6 @@ const VoiceEnabled = () => {
 
   const { transcript, resetTranscript } = useSpeechRecognition({ commands });
 
-  
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {transcript}
@@ -77,7 +86,10 @@ const VoiceEnabled = () => {
             onClick={SpeechRecognition.startListening}
             bsPrefix
           >
-            <FontAwesomeIcon icon={faMagic}></FontAwesomeIcon>
+            <FontAwesomeIcon
+              style={{ color: "white" }}
+              icon={faMagic}
+            ></FontAwesomeIcon>
           </Button>
         </OverlayTrigger>
       ) : (
@@ -86,11 +98,7 @@ const VoiceEnabled = () => {
           delay={{ show: 250, hide: 400 }}
           overlay={renderTooltip}
         >
-          <Button
-            className="voice__button"
-            onClick={resetTranscript}
-            bsPrefix
-          >
+          <Button className="voice__button" onClick={resetTranscript} bsPrefix>
             <FontAwesomeIcon icon={faEraser}></FontAwesomeIcon>
           </Button>
         </OverlayTrigger>

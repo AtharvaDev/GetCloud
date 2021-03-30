@@ -4,7 +4,9 @@ import {
   faFile,
   faShare,
   faStar,
+  faTrash,
   faTrashAlt,
+  faTrashRestoreAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
@@ -19,6 +21,7 @@ export default function File({ file }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [star, setStar] = useState("");
+  const [trash, setTrash] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const { currentUser } = useAuth();
 
@@ -47,8 +50,10 @@ export default function File({ file }) {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log(doc.id)
+          // console.log(doc.id);
           setStar(doc.data().isStared);
+          setTrash(doc.data().isTrash);
+
           // console.log(star);
         } else {
           console.log("No such document!");
@@ -70,6 +75,29 @@ export default function File({ file }) {
     database.files.doc(file.id).update({
       isStared: false,
     });
+  }
+
+  function handleAddTrash() {
+    database.files.doc(file.id).update({
+      isTrash: true,
+      isStared: false,
+    });
+  }
+
+  function handleRemoveTrash() {
+    database.files.doc(file.id).update({
+      isTrash: false,
+      isStared: false,
+    });
+  }
+
+  function handlePermanentlyTrash() {
+    database.files
+      .doc(file.id)
+      .delete()
+      .then(() => {
+        console.log("File successfully deleted!");
+      });
   }
 
   return (
@@ -168,7 +196,20 @@ export default function File({ file }) {
 
               {/* Started starts ///////////////////////////////////////// */}
               {/* {console.log(star)} */}
-              {star ? (
+
+              {trash ? (
+                <Dropdown.Item
+                  onClick={handleRemoveTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashRestoreAlt} className="mr-2" />
+                  Restore
+                </Dropdown.Item>
+              ) : star ? (
                 <Dropdown.Item
                   onClick={handleRemoveStared}
                   // href="#/action-2"
@@ -202,15 +243,36 @@ export default function File({ file }) {
 
               {/* Started ends ///////////////////////////////////////// */}
               <Dropdown.Divider />
-              <Dropdown.Item
-                // href="#/action-3"
-                className={
-                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
-                }
-              >
-                <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
-                Delete
-              </Dropdown.Item>
+
+              {/* Trash starts ///////////////////////////////////////// */}
+              {trash ? (
+                 <Dropdown.Item
+                 onClick={handlePermanentlyTrash}
+                 className={
+                   globalDarkTheme
+                     ? "bg-dark text-white"
+                     : "bg-light text-dark"
+                 }
+               >
+                 <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                 Permanently Delete
+
+               </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={handleAddTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
+                  Delete
+                </Dropdown.Item>
+              )}
+
+              {/* Trash ends ///////////////////////////////////////// */}
             </Dropdown.Menu>
           </Dropdown.Toggle>
         </Dropdown>

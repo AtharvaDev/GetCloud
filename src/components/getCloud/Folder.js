@@ -7,7 +7,11 @@ import {
   faFolder,
   faMicrophone,
   faStar,
+  faTrash,
   faTrashAlt,
+  faTrashRestore,
+  faTrashRestoreAlt,
+  faUndoAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../contexts/AuthContext";
 import { Dropdown } from "react-bootstrap";
@@ -47,7 +51,7 @@ export default function Folder({ folder }) {
       .then((doc) => {
         if (doc.exists) {
           setStar(doc.data().isStared);
-          // console.log(star);
+          setTrash(doc.data().isTrash);
         } else {
           console.log("No such document!");
         }
@@ -56,21 +60,7 @@ export default function Folder({ folder }) {
         console.log("Error getting document:", error);
       });
   }, [folder]);
-
-  // database.folders
-  // .doc(folder.id)
-  // .get()
-  // .then((doc) => {
-  //   if (doc.exists) {
-  //     setStar(doc.data().isStared);
-  //     // console.log(star);
-  //   } else {
-  //     console.log("No such document!");
-  //   }
-  // })
-  // .catch((error) => {
-  //   console.log("Error getting document:", error);
-  // });
+  // console.log(trash);
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null;
@@ -96,6 +86,29 @@ export default function Folder({ folder }) {
     database.folders.doc(folder.id).update({
       isStared: false,
     });
+  }
+
+  function handleAddTrash() {
+    database.folders.doc(folder.id).update({
+      isTrash: true,
+      isStared: false,
+    });
+  }
+
+  function handleRemoveTrash() {
+    database.folders.doc(folder.id).update({
+      isTrash: false,
+      isStared: false,
+    });
+  }
+
+  function handlePermanentlyTrash() {
+    database.folders
+      .doc(folder.id)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      });
   }
 
   return (
@@ -196,8 +209,19 @@ export default function Folder({ folder }) {
               {/* Rename ends //////////////////////////////////////////// */}
 
               {/* Started starts ///////////////////////////////////////// */}
-
-              {star ? (
+              {trash ? (
+                <Dropdown.Item
+                  onClick={handleRemoveTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashRestoreAlt} className="mr-2" />
+                  Restore
+                </Dropdown.Item>
+              ) : star ? (
                 <Dropdown.Item
                   onClick={handleRemoveStared}
                   className={
@@ -232,14 +256,31 @@ export default function Folder({ folder }) {
               <Dropdown.Divider />
 
               {/* Trash starts ///////////////////////////////////////// */}
-              <Dropdown.Item
-                className={
-                  globalDarkTheme ? "bg-dark text-white" : "bg-light text-dark"
-                }
-              >
-                <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
-                Delete
-              </Dropdown.Item>
+              {trash ? (
+                <Dropdown.Item
+                  onClick={handlePermanentlyTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                  Permanently Delete
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={handleAddTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
+                  Delete
+                </Dropdown.Item>
+              )}
 
               {/* Trash ends ///////////////////////////////////////// */}
             </Dropdown.Menu>

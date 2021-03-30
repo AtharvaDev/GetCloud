@@ -116,7 +116,8 @@ function Sidebar() {
               <Nav.Item>
                 <Nav.Link
                   activeClassName="sidebar__active"
-                  href="/trash"
+                  as={Link}
+                  to="/trash"
                   variant="none"
                   className="m-0 p-0 w-100"
                 >

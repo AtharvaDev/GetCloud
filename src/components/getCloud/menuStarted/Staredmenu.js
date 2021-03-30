@@ -20,9 +20,9 @@ function Staredmenu() {
   );
   const [starFolders, setStarfolders] = useState([]);
   const [starFiles, setStarFiles] = useState([]);
-
   const [loading, setLoading] = useState(true);
   // console.log(childFolders)
+
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
@@ -31,22 +31,28 @@ function Staredmenu() {
   useEffect(() => {
     database.folders
       .where("isStared", "==", true)
+      .where("isTrash", "==", false)
       .where("userId", "==", currentUser.uid)
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
         setStarfolders(snapshot.docs.map(database.formatDoc));
-        console.log(starFolders);
+        // console.log(starFolders);
       });
 
     database.files
       .where("isStared", "==", true)
+      .where("isTrash", "==", false)
       .where("userId", "==", currentUser.uid)
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
+        snapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
         setStarFiles(snapshot.docs.map(database.formatDoc));
         // console.log(starFiles);
       });
-  }, []);
+  }, [folder]);
 
   return (
     <>
