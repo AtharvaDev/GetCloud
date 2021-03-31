@@ -123,8 +123,8 @@ export default function Dashboard() {
           </div>
         )}
 
-        {childFolders.length > 0 && childFiles.length > 0 && <hr />}
-        {childFolders.length > 0 && childFiles.length > 0 && (
+        {childFolders.length > 0 && homeFiles.length > 0 && <hr />}
+        {childFolders.length > 0 && homeFiles.length > 0 && (
           <div className="w-100 mt-4">Files</div>
         )}
 

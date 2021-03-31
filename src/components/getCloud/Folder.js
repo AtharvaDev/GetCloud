@@ -16,6 +16,7 @@ import {
 import { useAuth } from "../../contexts/AuthContext";
 import { Dropdown } from "react-bootstrap";
 import { database } from "../../firebase";
+import { ROOT_FOLDER } from "../../hooks/useFolder";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -25,9 +26,15 @@ export default function Folder({ folder }) {
   const [name, setName] = useState("");
   const [star, setStar] = useState("");
   const [trash, setTrash] = useState("");
+  const [parentFolder, setParentFolder] = useState("");
+  const [parentFolderTrash, setParentFolderTrash] = useState(false);
+
   const { currentUser } = useAuth();
   const { globalDarkTheme } = useAuth();
   const { transcript, resetTranscript } = useSpeechRecognition();
+
+  let path = folder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
+  if (folder) path = [...path, ...folder.path];
 
   useEffect(() => {
     setName(transcript);
@@ -61,10 +68,6 @@ export default function Folder({ folder }) {
       });
   }, [folder]);
   // console.log(trash);
-
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return null;
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -109,6 +112,58 @@ export default function Folder({ folder }) {
       .then(() => {
         console.log("Document successfully deleted!");
       });
+  }
+
+  // root folder deletes =>  add child folders in trash ////////////////////////////
+  // console.log(path, "main");
+  // path.map((folder, index) => console.log(path.slice(index,index+1)));
+  // path.map((folder, index) => console.log(path[path.length -1].id));
+
+  useEffect(() => {
+    path.map((folder, index) => {
+      if (path.length != 1) {
+        setParentFolder(path[path.length - 1].id);
+      } else {
+        setParentFolder("");
+      }
+    });
+  }, [folder]);
+  // console.log(parentFolder);
+
+  useEffect(() => {
+    {
+      if (parentFolder != "") {
+        database.folders
+          .doc(parentFolder)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              // console.log("Document data:", doc.data());
+              setParentFolderTrash(doc.data().isTrash);
+            }
+          });
+      }
+    }
+  }, [parentFolder]);
+
+  // console.log(parentFolderTrash);
+  if (parentFolder != "") {
+    if (parentFolderTrash == true) {
+      // console.log("ok", parentFolderTrash);
+      database.folders.doc(folder.id).update({
+        isTrash: parentFolderTrash,
+      });
+    } else {
+      // console.log("not ok", parentFolderTrash);
+      database.folders.doc(folder.id).update({
+        isTrash: parentFolderTrash,
+      });
+    }
+  }
+  // console.log(parentFolderTrash);
+
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null;
   }
 
   return (
@@ -268,7 +323,7 @@ export default function Folder({ folder }) {
                   <FontAwesomeIcon icon={faTrash} className="mr-2" />
                   Permanently Delete
                 </Dropdown.Item>
-              ) : (
+              ) : path.length == "1" ? (
                 <Dropdown.Item
                   onClick={handleAddTrash}
                   className={
@@ -279,6 +334,18 @@ export default function Folder({ folder }) {
                 >
                   <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
                   Delete
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={handlePermanentlyTrash}
+                  className={
+                    globalDarkTheme
+                      ? "bg-dark text-white"
+                      : "bg-light text-dark"
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
+                  Permanently Delete
                 </Dropdown.Item>
               )}
 

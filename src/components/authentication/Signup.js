@@ -20,15 +20,14 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [imageAsUrl, setImageAsUrl] = useState("");
   const [imageAsFile, setImageAsFile] = useState();
-
   const [profilePicData, setProfilePicData] = useState("");
-  const history = useHistory(); 
+  const history = useHistory();
 
-  if (imageAsUrl === "") {
-    setImageAsUrl(
-      "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
-    );
-  }
+    if (imageAsUrl === "") {
+      setImageAsUrl(
+        "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
+      );
+    }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -57,7 +56,7 @@ export default function Signup() {
       if (authUser) {
         if (authUser.displayName) {
           //don't do anything
-          console.log(authUser.displayName)
+          console.log(authUser.displayName);
         } else {
           return authUser.updateProfile({
             displayName: usernameRef.current.value,
@@ -66,7 +65,6 @@ export default function Signup() {
         }
       }
     });
-    
   }, [imageAsFile, imageAsUrl, auth]);
 
   const handleImageAsFile = (e) => {
@@ -92,7 +90,6 @@ export default function Signup() {
         });
       }
     );
-
     // console.log(imageAsUrl);
   };
 
@@ -110,7 +107,6 @@ export default function Signup() {
       photoURL: imageAsUrl,
     });
     console.log(imageAsUrl, "now in curruser");
-
   }
 
   return (
@@ -125,7 +121,7 @@ export default function Signup() {
             <h2 className="text-center mb-4">Sign Up</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {/* {console.log(imageAsUrl)} */}
-            <div className="d-flex align-items-center justify-content-center">
+            <div className="signup__row d-flex align-items-center justify-content-center">
               <div className="signup__row__left">
                 <div className="signupProfile">
                   <img

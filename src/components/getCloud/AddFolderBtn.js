@@ -46,11 +46,16 @@ export default function AddFolderBtn({ currentFolder }) {
   function openModal() {
     setOpen(true);
   }
-  console.log(currentFolder);
+  // console.log(currentFolder);
 
   function closeModal() {
     setName("");
     setOpen(false);
+    if (currentFolder.id == null) {
+      history.push("/home")
+    } else {
+      <></>
+    }
   }
 
   function handleSubmit(e) {

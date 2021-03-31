@@ -1,6 +1,6 @@
 import { faEraser, faMagic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory, useLocation, useParams } from "react-router";
 import SpeechRecognition, {
@@ -17,9 +17,12 @@ const VoiceEnabled = () => {
     folderId,
     state.folder
   );
+  const [addFolder, setAddFolder] = useState(false);
   const history = useHistory();
 
-  function addAfolder() {}
+  function addAfolder() {
+    setAddFolder(true);
+  }
 
   function addAfile() {}
 
@@ -33,9 +36,10 @@ const VoiceEnabled = () => {
         "go to start",
         "go to favorites",
         "star",
+        "start",
+        "started",
         "go to favourite 30",
         "go to favourite is",
-
       ],
       callback: () => history.push("/stared"),
     },
@@ -56,8 +60,18 @@ const VoiceEnabled = () => {
       callback: () => history.push("/trash"),
     },
     {
+      command: [
+        "open update profile",
+        "go to update profile",
+        "view update profile",
+        "update profile",
+        "update my profile",
+      ],
+      callback: () => history.push("/update-profile"),
+    },
+    {
       command: "Make a * circle please", //We use * as an argument
-      callback: () => addAfile(), //and pass that argument to our function
+      callback: () => addAfolder(), //and pass that argument to our function
     },
   ];
 
@@ -74,39 +88,47 @@ const VoiceEnabled = () => {
   }
 
   return (
-    <div className="voiceEnabled">
-      {transcript == "" ? (
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 50, hide: 400 }}
-          overlay={renderTooltip}
-        >
-          <Button
-            className="voice__button"
-            onClick={SpeechRecognition.startListening}
-            bsPrefix
-          >
-            <FontAwesomeIcon
-              style={{ color: "white" }}
-              icon={faMagic}
-            ></FontAwesomeIcon>
-          </Button>
-        </OverlayTrigger>
-      ) : (
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={renderTooltip}
-        >
-          <Button className="voice__button" onClick={resetTranscript} bsPrefix>
-            <FontAwesomeIcon icon={faEraser}></FontAwesomeIcon>
-          </Button>
-        </OverlayTrigger>
-      )}
+    <>
+      {addFolder ? <></> : <></>}
 
-      {/* <Button onClick={SpeechRecognition.stopListening}>Stop</Button> */}
-      {/* <p>{transcript}</p> */}
-    </div>
+      <div className="voiceEnabled">
+        {transcript == "" ? (
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 50, hide: 400 }}
+            overlay={renderTooltip}
+          >
+            <Button
+              className="voice__button"
+              onClick={SpeechRecognition.startListening}
+              bsPrefix
+            >
+              <FontAwesomeIcon
+                style={{ color: "white" }}
+                icon={faMagic}
+              ></FontAwesomeIcon>
+            </Button>
+          </OverlayTrigger>
+        ) : (
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={renderTooltip}
+          >
+            <Button
+              className="voice__button"
+              onClick={resetTranscript}
+              bsPrefix
+            >
+              <FontAwesomeIcon icon={faEraser}></FontAwesomeIcon>
+            </Button>
+          </OverlayTrigger>
+        )}
+
+        {/* <Button onClick={SpeechRecognition.stopListening}>Stop</Button> */}
+        {/* <p>{transcript}</p> */}
+      </div>
+    </>
   );
 };
 export default VoiceEnabled;
