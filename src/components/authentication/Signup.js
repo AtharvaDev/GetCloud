@@ -23,11 +23,11 @@ export default function Signup() {
   const [profilePicData, setProfilePicData] = useState("");
   const history = useHistory();
 
-    if (imageAsUrl === "") {
-      setImageAsUrl(
-        "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
-      );
-    }
+  if (imageAsUrl === "") {
+    setImageAsUrl(
+      "https://firebasestorage.googleapis.com/v0/b/getcloud.appspot.com/o/DefaultUserPhoto.jpg?alt=media&token=78016bd9-5b88-4984-bcfb-c8f0a9a06ddd"
+    );
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -108,6 +108,12 @@ export default function Signup() {
     });
     console.log(imageAsUrl, "now in curruser");
   }
+  
+  useEffect(() => {
+    if (currentUser) {
+      history.replace("/home");
+    }
+  }, [currentUser]);
 
   return (
     <Container
@@ -180,11 +186,11 @@ export default function Signup() {
                 </Form>
               </div>
             </div>
+            <div className="w-100 text-center mt-4">
+              Already have an account? <Link to="/login">Log In</Link>
+            </div>
           </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">
-          Already have an account? <Link to="/login">Log In</Link>
-        </div>
       </div>
     </Container>
   );

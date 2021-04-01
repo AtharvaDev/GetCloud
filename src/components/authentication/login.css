@@ -1,0 +1,13 @@
+.btn__separator{
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 300;
+    line-height: .1em;
+}
+
+.btn__separator span {
+    background: white;
+    color: #606060;
+    padding: 0 10px;
+}

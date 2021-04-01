@@ -28,6 +28,8 @@ const firebaseConfig = {
 
   export const auth = okapp.auth()
 
+  export const provider = new firebase.auth.GoogleAuthProvider();
+
   export const storage = okapp.storage()
 
   export default okapp
