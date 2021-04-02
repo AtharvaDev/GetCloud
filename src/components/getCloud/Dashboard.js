@@ -14,6 +14,7 @@ import NavbarComponent from "./Navbar";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { database } from "../../firebase";
 import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
+import VoiceCommands from "./voiceEnabled/VoiceCommands";
 
 export default function Dashboard() {
   const { globalDarkTheme, currentUser } = useAuth();
@@ -88,6 +89,7 @@ export default function Dashboard() {
           folder.name === "Home" && (
             <div className="dashboard__welcome">
               <p>Hi {currentUser.displayName}, Welcome to the CloudApp</p>
+              <VoiceCommands/>
 
               {/* <h2>You can start with</h2> */}
             </div>

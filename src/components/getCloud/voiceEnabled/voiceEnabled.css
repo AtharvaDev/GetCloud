@@ -1,12 +1,14 @@
 .voice__button {
-  cursor: copy !important;
+  cursor: move !important;
 }
 
 .voice__button {
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  left: 57vw;
-  z-index: 99; /* Make sure it does not overlap */
+  position: absolute;
+  /*  position: fixed;  */
+  /* Place the button at the bottom of the page */
+  top: 85vh; 
+  left: 23vw;
+  z-index: 9999999999; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
   padding: 15px;
@@ -18,8 +20,16 @@
     0 0.25rem 0.5rem 0 rgba(180, 70, 207, 1) inset;
 }
 
-.voice__button:active{
-    -webkit-box-shadow: 0px 2px 0px #d35400;
-    -moz-box-shadow: 0px 2px 0px #d35400;
-    box-shadow: 0px 2px 0px #d35400;
-  }
+.voice__button:active {
+  -webkit-box-shadow: 0px 2px 0px #d35400;
+  -moz-box-shadow: 0px 2px 0px #d35400;
+  box-shadow: 0px 2px 0px #d35400;
+}
+
+.voice__modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.voiceEnabled{
+  height: 10px;
+}

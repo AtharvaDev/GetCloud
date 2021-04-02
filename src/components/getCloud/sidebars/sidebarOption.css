@@ -21,3 +21,7 @@
 .sidebaroption__light:hover {
   color: black;
 }
+
+.sidebar__dark__active{
+  color: white;
+}

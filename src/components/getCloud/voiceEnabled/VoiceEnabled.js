@@ -2,6 +2,7 @@ import { faEraser, faMagic } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Draggable from "react-draggable";
 import { useHistory, useLocation, useParams } from "react-router";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -89,8 +90,6 @@ const VoiceEnabled = () => {
 
   return (
     <>
-      {addFolder ? <></> : <></>}
-
       <div className="voiceEnabled">
         {transcript == "" ? (
           <OverlayTrigger

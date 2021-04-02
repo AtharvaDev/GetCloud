@@ -9,11 +9,12 @@ import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faUser } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidV4 } from "uuid";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 export default function Signup() {
   const usernameRef = useRef("");
   const emailRef = useRef("");
-  const passwordRef = useRef("");
+  // const passwordRef = useRef("");
   const passwordConfirmRef = useRef();
   const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
@@ -21,6 +22,7 @@ export default function Signup() {
   const [imageAsUrl, setImageAsUrl] = useState("");
   const [imageAsFile, setImageAsFile] = useState();
   const [profilePicData, setProfilePicData] = useState("");
+  const [passwordRef, setpasswordRef] = useState("");
   const history = useHistory();
 
   if (imageAsUrl === "") {
@@ -32,14 +34,14 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    if (passwordRef !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
 
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef);
 
       history.push("/home");
     } catch {
@@ -48,31 +50,13 @@ export default function Signup() {
     setLoading(false);
   }
 
-  useEffect(() => {
-    // try {
-    auth.onAuthStateChanged((authUser) => {
-      console.log("atharva testing this before", authUser);
-
-      if (authUser) {
-        if (authUser.displayName) {
-          //don't do anything
-          console.log(authUser.displayName);
-        } else {
-          return authUser.updateProfile({
-            displayName: usernameRef.current.value,
-            // photoURL: imageAsUrl,
-          });
-        }
-      }
-    });
-  }, [imageAsFile, imageAsUrl, auth]);
-
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     const id = uuidV4();
     setProfilePicData(id);
 
     setImageAsFile(image);
+
     const uploadTask = storage.ref(`/images/${id}/${image.name}`).put(image);
 
     uploadTask.on(
@@ -93,22 +77,41 @@ export default function Signup() {
     // console.log(imageAsUrl);
   };
 
+  useEffect(() => {
+    if (imageAsFile) {
+      console.log(imageAsFile.type);
+      if (
+        imageAsFile.type === "image/jpeg" ||
+        imageAsFile.type === "image/png"
+      ) {
+        console.log("okkk");
+      } else {
+        // console.log("not");
+        setError("file format not supported please upload jpg or png");
+      }
+    }
+    return () => {
+      setError("");
+    };
+  }, [imageAsFile]);
+
   if (currentUser) {
     database.users.doc(currentUser.uid).set({
       userId: currentUser.uid,
       name: usernameRef.current.value,
       email: emailRef.current.value,
-      pass: passwordRef.current.value,
+      pass: passwordRef,
       createdAt: database.getCurrrentTimeStamp(),
       profilePic: imageAsUrl,
     });
 
     currentUser.updateProfile({
       photoURL: imageAsUrl,
+      displayName: usernameRef.current.value,
     });
     console.log(imageAsUrl, "now in curruser");
   }
-  
+
   useEffect(() => {
     if (currentUser) {
       history.replace("/home");
@@ -146,6 +149,7 @@ export default function Signup() {
                           position: "absolute",
                           left: "-999999px",
                         }}
+                        disabled={loading}
                         type="file"
                         onChange={handleImageAsFile}
                       />
@@ -165,7 +169,14 @@ export default function Signup() {
                   </Form.Group>
                   <Form.Group id="password">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" ref={passwordRef} required />
+                    <Form.Control
+                      type="password"
+                      value={passwordRef}
+                      onChange={(e) => setpasswordRef(e.target.value)}
+                      required
+                    />
+                    <PasswordStrengthBar password={passwordRef} />
+                    {/* {console.log(passwordRef)} */}
                   </Form.Group>
                   <Form.Group id="password-confirm">
                     <Form.Label>Password Confirmation</Form.Label>

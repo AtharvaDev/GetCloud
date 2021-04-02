@@ -18,6 +18,8 @@ import Recent from "./getCloud/menuRecent/Recent";
 import "./App.css"
 import Stared from "./getCloud/menuStarted/Stared";
 import Trash from "./getCloud/menuTrash/Trash";
+import PageNotFound from "./menu404/PageNotFound";
+import PageNotFoundmenu from "./menu404/PageNotFoundmenu";
 
 function App() {
   return (
@@ -43,7 +45,9 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
 
             {/* Landing page */}
-            <Route path="/" component={Landing} />
+            <Route exact path="/" component={Landing} />
+            <PrivateRoute path="*" component={PageNotFoundmenu} />
+
           </Switch>
         </AuthProvider>
       </Router>

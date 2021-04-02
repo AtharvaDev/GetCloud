@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Nav } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import { Navbar } from "react-bootstrap";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
@@ -21,11 +21,44 @@ import SidebarOption from "./SidebarOption";
 import Storage from "./Storage";
 import Recent from "../menuRecent/Recent";
 import VoiceEnabled from "../voiceEnabled/VoiceEnabled";
+import Draggable from "react-draggable";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
   const { folderId } = useParams();
   const { state = {} } = useLocation();
+  const [location, setlocation] = useState("");
+
+  let loc = useLocation();
+  React.useEffect(() => {
+    setlocation(loc.pathname);
+  }, [loc]);
+
+  var userClass = "m-0 p-0 w-100 ";
+  if (location === "/user" || location === "/update-profile") {
+    userClass += "sidebar__dark__active ";
+  }
+
+  var homeClass = "m-0 p-0 w-100 ";
+  if (location === "/home") {
+    homeClass += "sidebar__dark__active ";
+  }
+
+  var recentClass = "m-0 p-0 w-100 ";
+  if (location === "/recent") {
+    recentClass += "sidebar__dark__active ";
+  }
+
+  var staredClass = "m-0 p-0 w-100 ";
+  if (location === "/stared") {
+    staredClass += "sidebar__dark__active ";
+  }
+
+  var trashClass = "m-0 p-0 w-100 ";
+  if (location === "/trash") {
+    trashClass += "sidebar__dark__active ";
+  }
+
   const { folder, childFolders, childFiles } = useFolder(
     folderId,
     state.folder
@@ -40,8 +73,11 @@ function Sidebar() {
         globalDarkTheme ? "sidebar sidebar__dark" : "sidebar sidebar__light"
       }
     >
-      <VoiceEnabled />
-
+      <Draggable>
+        <div>
+          <VoiceEnabled />
+        </div>
+      </Draggable>
       <Navbar className="flex-column" expand="lg">
         <img
           className="sidebar__logo mt-1"
@@ -67,7 +103,7 @@ function Sidebar() {
                   as={Link}
                   to="/user"
                   variant="none"
-                  className="m-0 p-0 w-100"
+                  className={userClass}
                 >
                   <SidebarOption
                     title="Profile"
@@ -82,7 +118,7 @@ function Sidebar() {
                   as={Link}
                   to="/home"
                   variant="none"
-                  className="m-0 p-0 w-100"
+                  className={homeClass}
                 >
                   <SidebarOption title="Home" icon={faHome}></SidebarOption>
                 </Nav.Link>
@@ -95,7 +131,7 @@ function Sidebar() {
                   activeClassName="sidebar__active"
                   to="/recent"
                   variant="none"
-                  className="m-0 p-0 w-100"
+                  className={recentClass}
                 >
                   <SidebarOption title="Recent" icon={faClock}></SidebarOption>
                 </Nav.Link>
@@ -107,7 +143,7 @@ function Sidebar() {
                   activeClassName="sidebar__active"
                   to="/stared"
                   variant="none"
-                  className="m-0 p-0 w-100"
+                  className={staredClass}
                 >
                   <SidebarOption title="Starred" icon={faStar}></SidebarOption>
                 </Nav.Link>
@@ -119,7 +155,7 @@ function Sidebar() {
                   as={Link}
                   to="/trash"
                   variant="none"
-                  className="m-0 p-0 w-100"
+                  className={trashClass}
                 >
                   <SidebarOption title="Trash" icon={faTrash}></SidebarOption>
                 </Nav.Link>

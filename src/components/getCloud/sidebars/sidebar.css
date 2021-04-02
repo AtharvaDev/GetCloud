@@ -5,12 +5,21 @@
   min-width: 230px;
 }
 
-.sidebar__active{
-  background-color: goldenrod;
-  color: aqua;
+.sidebar__dark__active {
+  background-color: #7a7979;
+  border: 1px solid #383838;
+  border-radius: 10px;
 }
 
-.nav{
+.sidebar__dark__active > div > svg {
+  color: white;
+}
+
+.sidebar__dark__active > div > h6 {
+  color: white;
+}
+
+.nav {
   background-color: aqua;
 }
 
