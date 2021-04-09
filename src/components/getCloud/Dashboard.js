@@ -89,7 +89,7 @@ export default function Dashboard() {
           folder.name === "Home" && (
             <div className="dashboard__welcome">
               <p>Hi {currentUser.displayName}, Welcome to the CloudApp</p>
-              <VoiceCommands/>
+              <VoiceCommands />
 
               {/* <h2>You can start with</h2> */}
             </div>

@@ -1,15 +1,12 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import ForgotPassword from "./authentication/ForgotPassword";
 import Login from "./authentication/Login";
 import PrivateRoute from "./authentication/PrivateRoute";
 import Signup from "./authentication/Signup";
 import UpdateProfile from "./authentication/UpdateProfile";
 import Profile from "./authentication/Profile";
-import NavbarComponent from "./getCloud/Navbar";
-import Dashboard from "./getCloud/Dashboard";
 import ChangeMode from "./theme/ChangeMode";
 import Home from "./getCloud/Home";
 import Landing from "./landing/Landing";
@@ -18,15 +15,18 @@ import Recent from "./getCloud/menuRecent/Recent";
 import "./App.css";
 import Stared from "./getCloud/menuStarted/Stared";
 import Trash from "./getCloud/menuTrash/Trash";
-import PageNotFound from "./menu404/PageNotFound";
 import PageNotFoundmenu from "./menu404/PageNotFoundmenu";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const location = useLocation();
+  // console.log(location)
   return (
     <>
-      <Router>
-        <AuthProvider>
-          <Switch>
+      <AuthProvider>
+        {/* wait until current component exits and only then start animating new one */}
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
             {/* getCloud */}
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/recent" component={Recent} />
@@ -51,8 +51,8 @@ function App() {
               <PageNotFoundmenu />
             </Route>
           </Switch>
-        </AuthProvider>
-      </Router>
+        </AnimatePresence>
+      </AuthProvider>
     </>
   );
 }

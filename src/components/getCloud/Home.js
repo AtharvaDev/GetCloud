@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import { pageAnimation } from "../styles/animation";
 import Dashboard from "./Dashboard";
 import "./Home.css";
 import RespSideBar from "./sidebars/responsive/RespSideBar";
@@ -13,14 +15,22 @@ function Home() {
     <div className="home">
       <div className="mobileOnly__sidebar">
         <RespSideBar />
-        {/* <Sidebar/> */}
         <Dashboard />
       </div>
       <div className="bigScreenOnly__sidebar">
         <div className="home__body">
-          <Sidebar />
-
-          <Dashboard />
+          <div className="">
+            <Sidebar />
+          </div>
+          <motion.div
+            variants={pageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="w-100"
+          >
+            <Dashboard />
+          </motion.div>
         </div>
       </div>
     </div>

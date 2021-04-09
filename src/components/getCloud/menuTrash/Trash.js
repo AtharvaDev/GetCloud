@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import React from "react";
+import { pageAnimation } from "../../styles/animation";
 import RespSideBar from "../sidebars/responsive/RespSideBar";
 import Sidebar from "../sidebars/Sidebar";
 import Trashmenu from "./Trashmenu";
@@ -13,8 +15,18 @@ function Trash() {
         </div>
         <div className="bigScreenOnly__sidebar">
           <div className="home__body">
-            <Sidebar   />
-            <Trashmenu   />
+            <div>
+              <Sidebar />
+            </div>
+            <motion.div
+              variants={pageAnimation}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              className="w-100"
+            >
+              <Trashmenu />
+            </motion.div>
           </div>
         </div>
       </div>

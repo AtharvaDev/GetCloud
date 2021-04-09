@@ -1,4 +1,5 @@
 // src/config/particlesConfig.js
+// this file in not used any where
 
 const particlesConfig = {
   particles: {
