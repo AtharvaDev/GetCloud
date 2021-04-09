@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import ForgotPassword from "./authentication/ForgotPassword";
 import Login from "./authentication/Login";
 import PrivateRoute from "./authentication/PrivateRoute";
@@ -15,7 +15,7 @@ import Home from "./getCloud/Home";
 import Landing from "./landing/Landing";
 import "animate.css/animate.css";
 import Recent from "./getCloud/menuRecent/Recent";
-import "./App.css"
+import "./App.css";
 import Stared from "./getCloud/menuStarted/Stared";
 import Trash from "./getCloud/menuTrash/Trash";
 import PageNotFound from "./menu404/PageNotFound";
@@ -46,8 +46,10 @@ function App() {
 
             {/* Landing page */}
             <Route exact path="/" component={Landing} />
-            <PrivateRoute path="*" component={PageNotFoundmenu} />
-
+            <Route path="*">
+              <Redirect to="/pagenotfound" />
+              <PageNotFoundmenu />
+            </Route>
           </Switch>
         </AuthProvider>
       </Router>

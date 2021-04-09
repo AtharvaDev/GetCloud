@@ -114,7 +114,7 @@ function UpdateProfileMenu() {
                 globalDarkTheme ? "text-light bg-dark" : "text-dark bg-light"
               }
             >
-              <h2 className="text-center mb-4">Update Profile</h2>
+              <h2 className="text-center mb-4" style={{cursor: "default"}}>Update Profile</h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <div className="signup__row d-flex align-items-center justify-content-center">
                 <div className="signup__row__left">
@@ -184,8 +184,8 @@ function UpdateProfileMenu() {
                   </Form>
                 </div>
               </div>
-              <div className="signup__cancelButton w-50 text-center mt-2">
-                <Button className="" as={Link} to={"/user"} variant="danger">
+              <div className="signup__cancelButton w-100 text-center mt-2">
+                <Button className="pl-5 pr-5 mt-2 " as={Link} to={"/user"} variant="danger">
                   Cancel
                 </Button>
               </div>

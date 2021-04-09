@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faUser } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidV4 } from "uuid";
 import PasswordStrengthBar from "react-password-strength-bar";
+import GlassBg from "../styles/GlassBg";
 
 export default function Signup() {
   const usernameRef = useRef("");
@@ -119,90 +120,102 @@ export default function Signup() {
   }, [currentUser]);
 
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      {console.log(imageAsFile)}
-      <div className="w-100" style={{ maxWidth: "600px" }}>
-        <Card>
-          <Card.Body>
-            <h2 className="text-center mb-4">Sign Up</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {/* {console.log(imageAsUrl)} */}
-            <div className="signup__row d-flex align-items-center justify-content-center">
-              <div className="signup__row__left">
-                <div className="signupProfile">
-                  <img
-                    className="signup__profileUrl rounded-circle"
-                    src={imageAsUrl}
-                  ></img>
+    <>
+      <GlassBg />
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        {console.log(imageAsFile)}
+        <div className="w-100" style={{ maxWidth: "600px" }}>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4" style={{ cursor: "default" }}>
+                Sign Up
+              </h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              {/* {console.log(imageAsUrl)} */}
+              <div className="signup__row d-flex align-items-center justify-content-center">
+                <div className="signup__row__left">
+                  <div className="signupProfile">
+                    <img
+                      className="signup__profileUrl rounded-circle"
+                      src={imageAsUrl}
+                    ></img>
 
-                  <p>Selet a profile photo</p>
-                  <div className="signup__profileUrl__upload">
-                    <label className="m-0 p-1">
-                      <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
-                      {"  "}Upload photo
-                      <input
-                        style={{
-                          opacity: 0,
-                          position: "absolute",
-                          left: "-999999px",
-                        }}
-                        disabled={loading}
-                        type="file"
-                        onChange={handleImageAsFile}
-                      />
-                    </label>
+                    <p style={{ cursor: "default" }}>Selet a profile photo</p>
+                    <div className="signup__profileUrl__upload">
+                      <label className="m-0 p-1">
+                        <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
+                        {"  "}Upload photo
+                        <input
+                          style={{
+                            opacity: 0,
+                            position: "absolute",
+                            left: "-999999px",
+                          }}
+                          disabled={loading}
+                          type="file"
+                          onChange={handleImageAsFile}
+                        />
+                      </label>
+                    </div>
                   </div>
                 </div>
+                <div className="signup__row__right">
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group id="username">
+                      <Form.Label>Full Name</Form.Label>
+                      <Form.Control type="name" ref={usernameRef} required />
+                    </Form.Group>
+                    <Form.Group id="email">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control type="email" ref={emailRef} required />
+                    </Form.Group>
+                    <Form.Group id="password">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        type="password"
+                        value={passwordRef}
+                        onChange={(e) => setpasswordRef(e.target.value)}
+                        required
+                      />
+                      <PasswordStrengthBar password={passwordRef} />
+                      {/* {console.log(passwordRef)} */}
+                    </Form.Group>
+                    <Form.Group id="password-confirm">
+                      <Form.Label>Password Confirmation</Form.Label>
+                      <Form.Control
+                        type="password"
+                        ref={passwordConfirmRef}
+                        required
+                      />
+                    </Form.Group>
+                    <Button
+                      variant="success"
+                      disabled={loading}
+                      className="w-100"
+                      type="submit"
+                    >
+                      Sign Up
+                    </Button>
+                  </Form>
+                </div>
               </div>
-              <div className="signup__row__right">
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group id="username">
-                    <Form.Label>Full Name</Form.Label>
-                    <Form.Control type="name" ref={usernameRef} required />
-                  </Form.Group>
-                  <Form.Group id="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" ref={emailRef} required />
-                  </Form.Group>
-                  <Form.Group id="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      value={passwordRef}
-                      onChange={(e) => setpasswordRef(e.target.value)}
-                      required
-                    />
-                    <PasswordStrengthBar password={passwordRef} />
-                    {/* {console.log(passwordRef)} */}
-                  </Form.Group>
-                  <Form.Group id="password-confirm">
-                    <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control
-                      type="password"
-                      ref={passwordConfirmRef}
-                      required
-                    />
-                  </Form.Group>
-                  <Button
-                    variant="success"
-                    disabled={loading}
-                    className="w-100"
-                    type="submit"
-                  >
-                    Sign Up
-                  </Button>
-                </Form>
+              <div
+                className="w-100 text-center mt-4"
+                style={{ cursor: "default" }}
+              >
+                Already have an account?{" "}
+                <Link to="/login">
+                  {" "}
+                  <span style={{ color: "blue" }}>Log In</span>
+                </Link>
               </div>
-            </div>
-            <div className="w-100 text-center mt-4">
-              Already have an account? <Link to="/login">Log In</Link>
-            </div>
-          </Card.Body>
-        </Card>
-      </div>
-    </Container>
+            </Card.Body>
+          </Card>
+        </div>
+      </Container>
+    </>
   );
 }

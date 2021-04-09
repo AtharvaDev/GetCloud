@@ -6,29 +6,33 @@ import SidebarOption from "./SidebarOption";
 
 function Storage() {
   const { currentUser } = useAuth();
-  const [totalSize, setTotalSize] = useState()
+  const [totalSize, setTotalSize] = useState();
 
-  let size = 0
+  let size = 0;
   database.files
     .where("userId", "==", currentUser.uid)
     .get()
     .then((docs) => {
-        docs.forEach(doc => {
-            // console.log(doc.id, '=>', doc.data().size);
-            size = size + doc.data().size  
-          });
-          
-          setTotalSize(((size.toFixed(2))/1000).toFixed(2))
+      docs.forEach((doc) => {
+        // console.log(doc.id, '=>', doc.data().size);
+        size = size + doc.data().size;
+      });
 
-          // console.log(totalSize,"ok")
-      
+      setTotalSize((size.toFixed(2) / 1000).toFixed(2));
+
+      // console.log(totalSize,"ok")
     });
 
   return (
     <div>
       <SidebarOption title="Storage:" icon={faCloud}></SidebarOption>
-      
-      <p className="animate__animated animate__backInUp">{totalSize} GB of 20 GB used</p>
+
+      <p
+        className="animate__animated animate__backInUp"
+        style={{ cursor: "default" }}
+      >
+        {totalSize} GB of 20 GB used
+      </p>
     </div>
   );
 }

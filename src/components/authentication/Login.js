@@ -6,6 +6,7 @@ import CenteredContainer from "./CenteredContainer";
 import "./login.css";
 import GoogleButton from "react-google-button";
 import { auth, database, provider } from "../../firebase";
+import GlassBg from "../styles/GlassBg";
 
 export default function Login() {
   const emailRef = useRef();
@@ -58,45 +59,62 @@ export default function Login() {
   }, [currentUser]);
 
   return (
-    <CenteredContainer>
-      <Card>
-        <Card.Body className="ml-5 mr-5 mt-3  mb-3">
-          <h2 className="text-center mb-4">Log in to Get Cloud</h2>
-          <GoogleButton
-            className="w-100 mb-4 mt-4 rounded"
-            type="light"
-            label="Continue with Google"
-            onClick={responseGoogle}
-          />
-          <p className="btn__separator">
-            <span>or</span>
-          </p>
-          {error && <Alert variant="danger">{error}</Alert>}
+    <>
+      <GlassBg className="mh-100vh" />
+      <div className="circle1" style={{ top: "5%", right: "20%" }}></div>
+      <div className="circle2" style={{ bottom: "0%", left: "20%" }}></div>
 
-          <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
-            </Form.Group>
-            <Form.Group id="password">
-              <div className="d-flex justify-content-between">
-                <Form.Label>Password</Form.Label>
-                <Link to="/forgot-password">Forgot Password?</Link>
-              </div>
-              <Form.Control type="password" ref={passwordRef} required />
-            </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
-              Log In
+      <CenteredContainer>
+        <Card id="cardPos">
+          <Card.Body className="ml-5 mr-5 mt-3  mb-3">
+            <h2 className="text-center mb-4" style={{ cursor: "default" }}>
+              Log in to Get Cloud
+            </h2>
+            <GoogleButton
+              className="w-100 mb-4 mt-4 rounded"
+              type="light"
+              label="Continue with Google"
+              onClick={responseGoogle}
+            />
+            <p className="btn__separator mb-3">
+              <span style={{ cursor: "default" }}>or</span>
+            </p>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group id="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" ref={emailRef} required />
+              </Form.Group>
+              <Form.Group id="password">
+                <div className="d-flex justify-content-between">
+                  <Form.Label>Password</Form.Label>
+                  <Link to="/forgot-password">
+                    <span style={{ color: "blue" }}>Forgot Password?</span>
+                  </Link>
+                </div>
+                <Form.Control type="password" ref={passwordRef} required />
+              </Form.Group>
+              <Button disabled={loading} className="w-100" type="submit">
+                Log In
+              </Button>
+            </Form>
+            <p className="btn__separator mt-5 mb-4">
+              <span style={{ cursor: "default" }}>New to Get Cloud</span>
+            </p>
+            <Button
+              disabled={loading}
+              variant="light"
+              className="w-100"
+              as={Link}
+              to="/signup"
+            >
+              <Link to="/signup">
+                <span style={{ color: "blue" }}> SignUp Now</span>
+              </Link>
             </Button>
-          </Form>
-          <p className="btn__separator mt-5">
-            <span>New to Get Cloud</span>
-          </p>
-          <div className="w-100 text-center mt-2 btn btn-light">
-            <Link to="/signup">Sign Up Now</Link>
-          </div>
-        </Card.Body>
-      </Card>
-    </CenteredContainer>
+          </Card.Body>
+        </Card>
+      </CenteredContainer>
+    </>
   );
 }
