@@ -36,7 +36,7 @@ function Recentmenu() {
       .where("isTrash", "==", false)
       .where("userId", "==", currentUser.uid)
       .orderBy("createdAt", "desc")
-      .limit(6)
+      .limit(8)
       .onSnapshot((snapshot) => {
         setRecentfolders(snapshot.docs.map(database.formatDoc));
         // console.log(starFolders);
@@ -46,7 +46,7 @@ function Recentmenu() {
       .where("isTrash", "==", false)
       .where("userId", "==", currentUser.uid)
       .orderBy("createdAt", "desc")
-      .limit(6)
+      .limit(8)
       .onSnapshot((snapshot) => {
         // snapshot.forEach((doc) => {
         //   // doc.data() is never undefined for query doc snapshots

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
 /* this is a body */
 .dashboard {
   flex: 0.8;
@@ -13,17 +15,32 @@
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
 }
 
-
-.folder__file{
+.folder__file {
   width: 33.33%;
 }
 
-.dashboard__welcome{
+.dashboard__welcome {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   height: 80vh;
+}
+
+.dashboard__welcome__title {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.2vmax;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.dashboard__welcome__title button {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-size: large;
 }
 
 .dashboard__welcome > p {
@@ -34,24 +51,21 @@
 
 /* Medium devices (landscape tablets, 600px and below) */
 @media only screen and (max-width: 600px) {
-
-  .folder__file{
+  .folder__file {
     width: 50%;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and below) */
 @media only screen and (max-width: 768px) {
-  .folder__file{
+  .folder__file {
     width: 50%;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1250px) {
-  .folder__file{
+  .folder__file {
     width: 25%;
   }
 }
-
-

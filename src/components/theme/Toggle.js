@@ -10,18 +10,18 @@ const ToggleContainer = styled.button`
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => theme.gradient};
-  width: 6rem;
-  height: 2.5 rem;
+  width: 5rem;
+  height: 2rem;
   margin: 0 auto;
   border-radius: 30px;
   border: 2px solid ${({ theme }) => theme.toggleBorder};
   font-size: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.3rem;
   overflow: hidden;
   cursor: pointer;
 
   svg {
-    width: 1.5rem;
+    width: 1.3rem;
     height: auto;
     transition: all 0.3s linear;
 

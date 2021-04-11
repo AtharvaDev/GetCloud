@@ -168,7 +168,8 @@ export default function Folder({ folder }) {
 
   return (
     <div
-      id="show__folder"
+      // show__shadow added in home.css
+      id="show__shadow"
       className={
         globalDarkTheme
           ? "d-flex border border-light rounded"

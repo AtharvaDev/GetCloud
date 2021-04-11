@@ -25,29 +25,6 @@ export default function ProfileMenu() {
 
   return (
     <>
-      {/* <div style={{ position: 'absolute'}}>
-
-      <Particles
-        params={{
-          particles: {
-            color: {
-              value: "#000000",
-            },
-            line_linked: {
-              color: {
-                value: "#000000",
-              },
-            },
-            number: {
-              value: 50,
-            },
-            size: {
-              value: 3,
-            },
-          },
-        }}
-      />
-      </div> */}
       <div
         className={
           globalDarkTheme
@@ -63,7 +40,9 @@ export default function ProfileMenu() {
                 globalDarkTheme ? "text-light bg-dark" : "text-dark bg-light"
               }
             >
-              <h2 className="text-center mb-4" style={{cursor: "default"}}>Profile</h2>
+              <h2 className="text-center mb-4" style={{ cursor: "default" }}>
+                Profile
+              </h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <div className="d-flex  flex-column justify-content-center ">
                 {/* <div className="d-flex flex-column justify-content-center align-items-centerr"> */}
@@ -77,10 +56,10 @@ export default function ProfileMenu() {
                 ></img>
                 {/* </div> */}
                 <br></br>
-                <div style={{cursor: "default"}}>
+                <div style={{ cursor: "default" }}>
                   <strong>Name:</strong> {currentUser.displayName}{" "}
                 </div>
-                <div style={{cursor: "default"}}>
+                <div style={{ cursor: "default" }}>
                   <strong>Email:</strong> {currentUser.email}{" "}
                 </div>
               </div>

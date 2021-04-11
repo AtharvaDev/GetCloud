@@ -22,6 +22,14 @@
   color: black;
 }
 
-.sidebar__dark__active{
+.sidebar__dark__active {
   color: white;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+  .sidebaroption {
+    margin-bottom: 10px !important;
+  }
 }

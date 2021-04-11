@@ -15,6 +15,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { database } from "../../firebase";
 import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 import VoiceCommands from "./voiceEnabled/VoiceCommands";
+import logo from "../icons/logo.png"
 
 export default function Dashboard() {
   const { globalDarkTheme, currentUser } = useAuth();
@@ -87,10 +88,16 @@ export default function Dashboard() {
           homeFolders.length === 0 &&
           homeFiles.length === 0 &&
           folder.name === "Home" && (
-            <div className="dashboard__welcome">
-              <p>Hi {currentUser.displayName}, Welcome to the CloudApp</p>
+            <div className="dashboard__welcome__title">
+             <div className="mb-4">
+                  <img
+                    src={logo}
+                    alt=""
+                    width="300px"
+                  />
+                </div>
+              <p>Hi {currentUser.displayName}, Welcome to the DigiSpace</p>
               <VoiceCommands />
-
               {/* <h2>You can start with</h2> */}
             </div>
           )
@@ -106,9 +113,12 @@ export default function Dashboard() {
           </SkeletonTheme>
         )}
 
+        {homeFolders.length > 0  && (
+          <div className="w-100 mt-4">Folders</div>
+        )}
+
         {childFolders.length > 0 && (
           <div className="d-flex flex-wrap">
-            <div className="w-100 mt-4">Folders</div>
             {childFolders.map((childFolder) =>
               childFolder.isTrash ? (
                 <></>

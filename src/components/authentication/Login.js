@@ -61,9 +61,10 @@ export default function Login() {
   return (
     <>
       <GlassBg className="mh-100vh" />
-      <div className="circle1" style={{ top: "5%", right: "20%" }}></div>
-      <div className="circle2" style={{ bottom: "0%", left: "20%" }}></div>
-
+      {/* <div className="circle1" style={{ top: "5%", right: "20%" }}></div> */}
+      {/* <div className="circle2" style={{ bottom: "0%", left: "20%" }}></div> */}
+      <div className="circle1" style={{}}></div>
+      <div className="circle2" style={{}}></div>
       <CenteredContainer>
         <Card id="cardPos">
           <Card.Body className="ml-5 mr-5 mt-3  mb-3">

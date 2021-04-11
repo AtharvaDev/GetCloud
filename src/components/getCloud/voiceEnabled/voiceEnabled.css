@@ -6,7 +6,7 @@
   position: absolute;
   /*  position: fixed;  */
   /* Place the button at the bottom of the page */
-  top: 85vh; 
+  top: 85vh;
   left: 23vw;
   z-index: 9999999999; /* Make sure it does not overlap */
   border: none; /* Remove borders */
@@ -30,6 +30,12 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.voiceEnabled{
+.voiceEnabled {
   height: 10px;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+ 
 }

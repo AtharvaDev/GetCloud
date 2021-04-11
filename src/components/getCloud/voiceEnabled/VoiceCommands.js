@@ -12,7 +12,7 @@ function VoiceCommands() {
   return (
     <div>
       <Button variant="link" className="btn" onClick={handleShow}>
-        Voice Commands
+      📌 Voice Commands 📌
       </Button>
 
       <Modal className="voice__modal" show={show} onHide={handleClose}>

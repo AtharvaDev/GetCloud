@@ -3,12 +3,16 @@
   height: 100vh;
   flex: 0.2;
   min-width: 230px;
+
 }
 
 .sidebar__dark__active {
   background-color: #7a7979;
   border: 1px solid #383838;
   border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .sidebar__dark__active > div > svg {
@@ -26,7 +30,8 @@
 .sidebar__logo {
   /* object-fit: contain; */
 
-  height: 35px;
+  height: 65px;
+  width: 
   /* margin-right: auto; */
 }
 
@@ -45,4 +50,17 @@
 
 .navbar__dark {
   color: white;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1400px) {
+  /* Styles */
+  .sidebar__largeScreen {
+    font-size: large;
+    width: 10em;
+  }
+
+  .nav-item {
+    margin-bottom: 12px !important;
+  }
 }

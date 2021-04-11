@@ -1,16 +1,18 @@
-1. make spotify ui           
-2. delete
-3. update
-4. search
-5. voice enabled 
-6. total storage
-7. sort by 
-8. Active navbar buttons
-9. Guest login option
-8. login upgrade
-9. Subscriptions page
-10. Active navbar
-11. cursor animation 
-    (https://youtu.be/TpwpAYi-p2w)
-
-12. share files
+1. make spotify ui                              done       
+2. delete                                       done       
+3. update                                       done       
+4. search                                       done       
+5. voice enabled                                done       
+6. total storage                                done       
+7. sort by -----
+8. Active navbar buttons                        done       
+9. Guest login option -----
+8. login upgrade                                done       
+9. Subscriptions page ----
+10. Active navbar                               done       
+11. cursor animation ----
+    (https://youtu.be/TpwpAYi-p2w)              n/a.
+12. share files                                 done       
+13. File upload sound ----
+14. Home page ----
+15. home image slider

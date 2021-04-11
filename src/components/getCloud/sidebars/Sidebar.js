@@ -22,6 +22,7 @@ import Storage from "./Storage";
 import Recent from "../menuRecent/Recent";
 import VoiceEnabled from "../voiceEnabled/VoiceEnabled";
 import Draggable from "react-draggable";
+import logo from "../../icons/logo.png"
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
@@ -79,24 +80,33 @@ function Sidebar() {
         </div>
       </Draggable>
       <Navbar className="flex-column" expand="lg">
-        <img
+        {/* // old logo */}
+        {/* <img
           className="sidebar__logo mt-1"
           src={
             globalDarkTheme
               ? "https://2c2hs846t9613xujn610ygkw-wpengine.netdna-ssl.com/wp-content/uploads/2019/07/cloudapp-white.png"
               : "https://assets-global.website-files.com/58e32bace1998d6e3fee8d71/5fa2ea3ef95fbd1a1821e968_brand-lockup-horizontal-white-bg.svg"
           }
-          alt=""
-        />
+        /> */}
 
-        <div className="sidebar__themebtn mt-2 mb-5">
+        {/* // new logo */}
+        <img className="sidebar__logo mt-1" src={logo} alt="" />
+
+        <div className="sidebar__themebtn mt-3 mb-4">
           <ChangeMode />
         </div>
 
-        <div className="">
+        <div className="sidebar__largeScreen">
           <div className="">
-            <AddFolderBtn currentFolder={folder}></AddFolderBtn>
-            <AddFileBtn currentFolder={folder}></AddFileBtn>
+            <Nav.Item>
+              <AddFolderBtn currentFolder={folder}></AddFolderBtn>
+            </Nav.Item>
+
+            <Nav.Item>
+              <AddFileBtn currentFolder={folder}></AddFileBtn>
+            </Nav.Item>
+
             <>
               <Nav.Item>
                 <Nav.Link

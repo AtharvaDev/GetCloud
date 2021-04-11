@@ -26,16 +26,17 @@ export default function File({ file }) {
   const [alertVisible, setAlertVisible] = useState(false);
   const { currentUser } = useAuth();
   const { loading, error, data } = useShortenUrl(file.url);
-  const [shortLink, setShortLink] = useState('')
+  const [shortLink, setShortLink] = useState("");
+  const [fileTarget, setFileTarget] = useState("_blank");
 
   function openModal() {
     setOpen(true);
-
-    setShortLink(data.link)
+    setShortLink(data.link);
   }
+
   function closeModal() {
     setOpen(false);
-    setShortLink('')
+    setShortLink("");
   }
 
   function diplayAlert() {
@@ -106,10 +107,18 @@ export default function File({ file }) {
       });
   }
 
+  useEffect(() => {
+    console.log(file);
+  }, []);
+
+  function handleFileClick() {}
+
   // console.log(file.url);
 
   return (
     <div
+    // show__shadow added in home.css
+      id="show__shadow"
       className={
         globalDarkTheme
           ? "d-flex border border-light rounded"
@@ -125,7 +134,8 @@ export default function File({ file }) {
       )}
       <Button
         href={file.url}
-        target="_blank"
+        target={fileTarget}
+        onClick={handleFileClick}
         variant={globalDarkTheme ? "outline-light" : "outline-dark"}
         style={{ border: "none", outline: "none" }}
         className="d-flex w-100 align-items-center text-truncate"

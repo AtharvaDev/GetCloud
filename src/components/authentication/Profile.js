@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import RespSideBar from "../getCloud/sidebars/responsive/RespSideBar";
 import Sidebar from "../getCloud/sidebars/Sidebar";
@@ -17,7 +18,7 @@ function Profile() {
             <div>
               <Sidebar />
             </div>
-            <div
+            <motion.div
               variants={pageAnimation}
               initial="hidden"
               animate="show"
@@ -25,7 +26,7 @@ function Profile() {
               className="w-100"
             >
               <ProfileMenu />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

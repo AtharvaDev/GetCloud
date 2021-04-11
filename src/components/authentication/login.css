@@ -13,7 +13,7 @@
 }
 
 .cards {
-    backdrop-filter: blur(2rem);
+  backdrop-filter: blur(2rem);
   /* background-image: linear-gradient(to right bottom, rgba(101, 223, 201,0.7), rgba(108,219,235,0.3)); */
 }
 
@@ -29,14 +29,16 @@
   width: 15rem;
   position: absolute;
   border-radius: 50%;
-
+  left: 50%;
+  top: 50%;
+  /* z-index: 100; */
+  /* transform: translate(-50%, -50%); */
 }
-/* .circle1 {
-  top: 5%;
-  right: 10%;
+.circle1 {
+  transform: translate(50%, -150%);
 }
 
-.circle2{
-    bottom: 5%;
-    left: 10%;
-} */
+.circle2 {
+  position: fixed;
+  transform: translate(-150%, 50%);
+}
