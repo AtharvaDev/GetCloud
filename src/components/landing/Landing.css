@@ -1,0 +1,51 @@
+.Landing__container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  font-family: "Poppins", sans-serif;
+}
+
+.Landing__container h1 {
+}
+
+@media only screen and (max-width: 600px) {
+  .Landing__container {
+    flex-direction: column;
+  }
+}
+
+.Landing__container__left {
+  flex: 0.5;
+  margin: 2rem;
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .Landing__container__left {
+    margin: 0px;
+    margin-top: 7rem;
+    max-width: 90%;
+  }
+}
+
+.Landing__container__right {
+  flex: 0.5;
+  cursor: default;
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .Landing__container__right {
+    margin: 0px !important;
+    margin-top: 7rem;
+    max-width: 90%;
+  }
+}
+
+.Landing__container__right div {
+  cursor: default;
+}

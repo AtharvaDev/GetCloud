@@ -17,6 +17,9 @@ import Stared from "./getCloud/menuStarted/Stared";
 import Trash from "./getCloud/menuTrash/Trash";
 import PageNotFoundmenu from "./menu404/PageNotFoundmenu";
 import { AnimatePresence } from "framer-motion";
+import Features from "./landing/Features";
+import Pricing from "./landing/Pricing";
+import AboutUs from "./landing/AboutUs";
 
 function App() {
   const location = useLocation();
@@ -46,6 +49,9 @@ function App() {
 
             {/* Landing page */}
             <Route exact path="/" component={Landing} />
+            <Route exact path="/features" component={Features} />
+            <Route exact path="/pricing" component={Pricing} />
+            <Route exact path="/aboutus" component={AboutUs} />
             <Route path="*">
               <Redirect to="/pagenotfound" />
               <PageNotFoundmenu />

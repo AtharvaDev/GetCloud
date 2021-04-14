@@ -7,6 +7,7 @@ import "./login.css";
 import GoogleButton from "react-google-button";
 import { auth, database, provider } from "../../firebase";
 import GlassBg from "../styles/GlassBg";
+import logo from "../icons/logo1.png";
 
 export default function Login() {
   const emailRef = useRef();
@@ -60,17 +61,23 @@ export default function Login() {
 
   return (
     <>
-      <GlassBg className="mh-100vh" />
+      <GlassBg className="h-100" />
       {/* <div className="circle1" style={{ top: "5%", right: "20%" }}></div> */}
       {/* <div className="circle2" style={{ bottom: "0%", left: "20%" }}></div> */}
       <div className="circle1" style={{}}></div>
       <div className="circle2" style={{}}></div>
       <CenteredContainer>
         <Card id="cardPos">
-          <Card.Body className="ml-5 mr-5 mt-3  mb-3">
-            <h2 className="text-center mb-4" style={{ cursor: "default" }}>
-              Log in to Get Cloud
-            </h2>
+          <Card.Body id="resp__cardBody" className="ml-5 mr-5 mt-3 mb-3 ">
+            <div className="login__heading text-center w-100">
+              <h2 className="text-center mb-0" style={{ cursor: "default" }}>
+                Log in to
+              </h2>
+              <Link to="/">
+                <img className="login__logo pl-2" src={logo} alt="" />
+              </Link>
+            </div>
+
             <GoogleButton
               className="w-100 mb-4 mt-4 rounded"
               type="light"
@@ -100,7 +107,7 @@ export default function Login() {
               </Button>
             </Form>
             <p className="btn__separator mt-5 mb-4">
-              <span style={{ cursor: "default" }}>New to Get Cloud</span>
+              <span style={{ cursor: "default" }}>New to DigiSpace</span>
             </p>
             <Button
               disabled={loading}

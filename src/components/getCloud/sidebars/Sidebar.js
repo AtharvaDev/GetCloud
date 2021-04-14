@@ -22,7 +22,7 @@ import Storage from "./Storage";
 import Recent from "../menuRecent/Recent";
 import VoiceEnabled from "../voiceEnabled/VoiceEnabled";
 import Draggable from "react-draggable";
-import logo from "../../icons/logo.png"
+import logo from "../../icons/logo1.png"
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();

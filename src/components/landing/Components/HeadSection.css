@@ -1,0 +1,106 @@
+.HeadSection {
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeadSection__container {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  /* transform: translateX(20px) */
+  align-items: center;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .HeadSection__container {
+    transform: translateY(20px);
+    width: 80vw;
+  }
+}
+
+.HeadSection__text {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 3.125rem;
+  align-items: center;
+  flex: 1;
+  color: white;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .HeadSection__text {
+    font-weight: 400;
+    font-size: 2.125rem;
+  }
+}
+
+.HeadSection__textDesc {
+  font-size: 1.275rem;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: center;
+}
+
+.HeadSection__lower {
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.HeadSection__buttons {
+  display: flex;
+  z-index: 1;
+}
+
+.HeadSection__buttons > a {
+  vertical-align: middle;
+  background: #fff;
+  border-radius: 0;
+  padding: 0.88rem 1.5rem;
+  text-decoration: none;
+  -webkit-box-shadow: 0 5px 10px 0 rgb(4 10 41 / 30%);
+  box-shadow: 0 5px 10px 0 rgb(4 10 41 / 30%);
+  border: none;
+  font-size: 0.825rem;
+  letter-spacing: 2px;
+  line-height: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+  color: #1e9fc4;
+  margin-top: 4rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.HeadSection__buttons::after {
+  background-image: url(../images/yellow-airplane.png);
+  width: 7em;
+  content: "";
+  height: 10em;
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  bottom: 0em;
+  pointer-events: none;
+  transform: translate(200px, 40px);
+}
+
+.HeadSection__expand {
+  color: white;
+  width: 100%;
+  margin-top: center;
+  text-align: center;
+}

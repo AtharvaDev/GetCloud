@@ -3,6 +3,7 @@ import React from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Sidebar from "../Sidebar";
 import { useAuth } from "../../../../contexts/AuthContext";
+import logo from "../../../icons/logo.png";
 import ChangeMode from "../../../theme/ChangeMode";
 
 function RespSideBar() {
@@ -16,7 +17,8 @@ function RespSideBar() {
         variant={globalDarkTheme ? "dark" : "light"}
       >
         <Navbar.Brand href="#home">
-          <img
+          {/* old logo */}
+          {/* <img
             className="respSidebar__logo mt-1"
             src={
               globalDarkTheme
@@ -24,18 +26,19 @@ function RespSideBar() {
                 : "https://assets-global.website-files.com/58e32bace1998d6e3fee8d71/5fa2ea3ef95fbd1a1821e968_brand-lockup-horizontal-white-bg.svg"
             }
             alt=""
-          />
+          /> */}
+
+          {/* new logo */}
+          <img className="respSidebar__logo mt-1 pl-2" src={logo} alt="" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="">
             <Sidebar />
           </Nav>
-          <div className="sidebar__themebtn mt-2 mb-3">
-          </div>
+          <div className="sidebar__themebtn mt-2 mb-3"></div>
         </Navbar.Collapse>
       </Navbar>
-
     </div>
   );
 }

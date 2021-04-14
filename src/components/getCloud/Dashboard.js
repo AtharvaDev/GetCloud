@@ -15,7 +15,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { database } from "../../firebase";
 import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 import VoiceCommands from "./voiceEnabled/VoiceCommands";
-import logo from "../icons/logo.png"
+import logo from "../icons/logo1.png"
 
 export default function Dashboard() {
   const { globalDarkTheme, currentUser } = useAuth();

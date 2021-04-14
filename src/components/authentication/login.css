@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 .btn__separator {
   width: 100%;
   text-align: center;
@@ -33,6 +35,7 @@
   top: 50%;
   /* z-index: 100; */
   /* transform: translate(-50%, -50%); */
+ 
 }
 .circle1 {
   transform: translate(50%, -150%);
@@ -41,4 +44,37 @@
 .circle2 {
   position: fixed;
   transform: translate(-150%, 50%);
+}
+
+
+.login__heading {
+  /* display: flex; */
+  display: inline-flex;
+  vertical-align: bottom;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pacifico", cursive;
+  color: rgba(22, 78, 135, 100);
+}
+
+.login__logo {
+  height: 75px;
+  /* transform: rotateX(45deg); */
+  transform: translateY(-6.5px);
+  /* padding-left: 10px; */
+  object-fit: contain;
+  position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+  .circle1,.circle2{
+    display: none;
+  }
+  .login__heading{
+    display: block;
+  }
+  
+  #resp__cardBody{
+    margin: 1rem !important;
+  }
 }
