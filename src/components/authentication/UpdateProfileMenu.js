@@ -7,6 +7,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { storage } from "../../firebase";
 import CenteredContainer from "./CenteredContainer";
 import { v4 as uuidV4 } from "uuid";
+import { motion } from "framer-motion";
 
 function UpdateProfileMenu() {
   const emailRef = useRef();
@@ -114,7 +115,9 @@ function UpdateProfileMenu() {
                 globalDarkTheme ? "text-light bg-dark" : "text-dark bg-light"
               }
             >
-              <h2 className="text-center mb-4" style={{cursor: "default"}}>Update Profile</h2>
+              <h2 className="text-center mb-4" style={{ cursor: "default" }}>
+                Update Profile
+              </h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <div className="signup__row d-flex align-items-center justify-content-center">
                 <div className="signup__row__left">
@@ -178,16 +181,39 @@ function UpdateProfileMenu() {
                         placeholder="Leave blank to keep the same"
                       />
                     </Form.Group>
-                    <Button disabled={loading} className="w-100" type="submit">
-                      Update
-                    </Button>
+                    <motion.div
+                      whileHover={{
+                        scale: 1.04,
+                      }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <Button
+                        disabled={loading}
+                        className="w-100"
+                        type="submit"
+                      >
+                        Update
+                      </Button>
+                    </motion.div>
                   </Form>
                 </div>
               </div>
               <div className="signup__cancelButton w-100 text-center mt-2">
-                <Button className="pl-5 pr-5 mt-2 " as={Link} to={"/user"} variant="danger">
-                  Cancel
-                </Button>
+                <motion.div
+                  whileHover={{
+                    scale: 1.04,
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Button
+                    className="pl-5 pr-5 mt-2 "
+                    as={Link}
+                    to={"/user"}
+                    variant="danger"
+                  >
+                    Cancel
+                  </Button>
+                </motion.div>
               </div>
             </Card.Body>
           </Card>

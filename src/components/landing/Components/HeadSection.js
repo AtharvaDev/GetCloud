@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import LottieAnimation from "../lottiefiles/Lottie";
 import "./HeadSection.css";
 
 const HeadSection = ({
@@ -13,6 +14,8 @@ const HeadSection = ({
   leftBtnLink,
   twoBtns,
   first,
+  lottie,
+  features,
 }) => {
   return (
     <div
@@ -43,6 +46,16 @@ const HeadSection = ({
         {first && (
           <div className="HeadSection__expand">
             <FontAwesomeIcon icon={faArrowCircleDown}></FontAwesomeIcon>
+          </div>
+        )}
+        {lottie && (
+          <div className="HeadSection__expand">
+            <LottieAnimation
+              lotti={features}
+              height={"null"}
+              width={"null"}
+              speed={2}
+            />
           </div>
         )}
       </div>

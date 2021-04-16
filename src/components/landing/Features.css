@@ -1,3 +1,13 @@
+.Features {
+  width: 100vw;
+  max-width: 100%;
+  scrollbar-width: none;
+}
+
+.Features::-webkit-scrollbar {
+  display: none;
+}
+
 .Features__whiteNav > .false {
   background-color: white;
 }
@@ -18,7 +28,9 @@
   left: 0;
   bottom: 0;
   height: 100%;
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
+
   background-image: url(./images/features-share.png);
   background-size: cover;
   background-position: bottom;
@@ -53,8 +65,9 @@
   left: 0;
   bottom: 0;
   height: 100%;
-  width: 140%;
-  background-image: url(./images/features-free-space.jpeg);
+  width: 100%;
+  overflow: hidden;
+  background-image: url(./images/features-free-space-crop.jpeg);
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -84,7 +97,6 @@
 .features__three .HeadSection__container .HeadSection__text {
   color: black;
 }
-
 
 @media only screen and (max-width: 600px) {
   .features__three .HeadSection__container {

@@ -11,6 +11,8 @@ import { faUpload, faUser } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidV4 } from "uuid";
 import PasswordStrengthBar from "react-password-strength-bar";
 import GlassBg from "../styles/GlassBg";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../styles/animation";
 
 export default function Signup() {
   const usernameRef = useRef("");
@@ -120,7 +122,7 @@ export default function Signup() {
   }, [currentUser]);
 
   return (
-    <>
+    <motion.div>
       <GlassBg />
       <Container
         className="d-flex align-items-center justify-content-center"
@@ -191,14 +193,21 @@ export default function Signup() {
                         required
                       />
                     </Form.Group>
-                    <Button
-                      variant="success"
-                      disabled={loading}
-                      className="w-100"
-                      type="submit"
+                    <motion.div
+                      whileHover={{
+                        scale: 1.04,
+                      }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      Sign Up
-                    </Button>
+                      <Button
+                        variant="success"
+                        disabled={loading}
+                        className="w-100"
+                        type="submit"
+                      >
+                        Sign Up
+                      </Button>
+                    </motion.div>
                   </Form>
                 </div>
               </div>
@@ -216,6 +225,6 @@ export default function Signup() {
           </Card>
         </div>
       </Container>
-    </>
+    </motion.div>
   );
 }

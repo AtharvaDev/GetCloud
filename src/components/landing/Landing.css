@@ -7,6 +7,8 @@
   padding-left: 5vw;
   padding-right: 5vw;
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .Landing__container h1 {
@@ -48,4 +50,33 @@
 
 .Landing__container__right div {
   cursor: default;
+}
+
+/* svg1 */
+.custom-shape-divider-bottom-1618461652 {
+  position: absolute;
+  top: inherit;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1618461652 svg {
+  position: relative;
+  display: block;
+  width: calc(140% + 1.3px);
+  height: 100px;
+}
+
+.custom-shape-divider-bottom-1618461652 .shape-fill {
+  fill: #000000;
+}
+
+/* svg2 */
+.landing__svg__two {
+  display: block;
+  width: 100%;
 }

@@ -3,21 +3,21 @@
   background-color: transparent;
   background: none;
   position: fixed;
-  width: 100%;
+  min-width: 100vw;
+  max-width: 100vw;
   top: 0;
   padding: 15px;
   /* margin-top: 15px; */
   /* margin-left: 15px; */
   z-index: 100;
-  transition-timing-function: ease-in ;
+  transition-timing-function: ease-in;
   transition: all 0.5s;
 }
-
-
 
 .LandNav__black {
   background-color: black;
   opacity: 0.85;
+  width: 100vw;
 }
 
 .LandNav__logo img {

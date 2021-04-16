@@ -6,6 +6,7 @@ import CenteredContainer from "./CenteredContainer";
 import NavbarComponent from "../getCloud/Navbar";
 import Particles from "react-particles-js";
 import Test from "../getCloud/Test";
+import { motion } from "framer-motion";
 
 export default function ProfileMenu() {
   const [error, setError] = useState("");
@@ -63,12 +64,29 @@ export default function ProfileMenu() {
                   <strong>Email:</strong> {currentUser.email}{" "}
                 </div>
               </div>
-
               {console.log(currentUser)}
-              <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-                Update Profile
-              </Link>
-              <div className="w-100 mt-2">
+              <motion.div
+                whileHover={{
+                  scale: 1.04,
+                }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Link
+                  to="/update-profile"
+                  className="btn btn-primary w-100 mt-3"
+                >
+                  Update Profile
+                </Link>
+              </motion.div>
+              <hr style={{ backgroundColor: "aquamarine" }} />
+
+              <motion.div
+                whileHover={{
+                  scale: 1.04,
+                }}
+                whileTap={{ scale: 0.97 }}
+                className="w-100 mt-2"
+              >
                 <Button
                   variant="danger"
                   className="w-100"
@@ -76,7 +94,7 @@ export default function ProfileMenu() {
                 >
                   Log Out
                 </Button>
-              </div>
+              </motion.div>
             </Card.Body>
           </Card>
         </CenteredContainer>

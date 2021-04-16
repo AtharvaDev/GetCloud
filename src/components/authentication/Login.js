@@ -8,6 +8,8 @@ import GoogleButton from "react-google-button";
 import { auth, database, provider } from "../../firebase";
 import GlassBg from "../styles/GlassBg";
 import logo from "../icons/logo1.png";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../styles/animation";
 
 export default function Login() {
   const emailRef = useRef();
@@ -60,10 +62,11 @@ export default function Login() {
   }, [currentUser]);
 
   return (
-    <>
+    <motion.div variants={pageAnimation} initial="hidden" animate="show">
       <GlassBg className="h-100" />
       {/* <div className="circle1" style={{ top: "5%", right: "20%" }}></div> */}
       {/* <div className="circle2" style={{ bottom: "0%", left: "20%" }}></div> */}
+
       <div className="circle1" style={{}}></div>
       <div className="circle2" style={{}}></div>
       <CenteredContainer>
@@ -77,13 +80,20 @@ export default function Login() {
                 <img className="login__logo pl-2" src={logo} alt="" />
               </Link>
             </div>
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <GoogleButton
+                className="w-100 mb-4 mt-4 rounded"
+                type="light"
+                label="Continue with Google"
+                onClick={responseGoogle}
+              />
+            </motion.div>
 
-            <GoogleButton
-              className="w-100 mb-4 mt-4 rounded"
-              type="light"
-              label="Continue with Google"
-              onClick={responseGoogle}
-            />
             <p className="btn__separator mb-3">
               <span style={{ cursor: "default" }}>or</span>
             </p>
@@ -102,27 +112,41 @@ export default function Login() {
                 </div>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
-              <Button disabled={loading} className="w-100" type="submit">
-                Log In
-              </Button>
+              <motion.div
+                whileHover={{
+                  scale: 1.04,
+                }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Button disabled={loading} className="w-100" type="submit">
+                  Log In
+                </Button>
+              </motion.div>
             </Form>
             <p className="btn__separator mt-5 mb-4">
               <span style={{ cursor: "default" }}>New to DigiSpace</span>
             </p>
-            <Button
-              disabled={loading}
-              variant="light"
-              className="w-100"
-              as={Link}
-              to="/signup"
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{ scale: 0.97 }}
             >
-              <Link to="/signup">
-                <span style={{ color: "blue" }}> SignUp Now</span>
-              </Link>
-            </Button>
+              <Button
+                disabled={loading}
+                variant="light"
+                className="w-100"
+                as={Link}
+                to="/signup"
+              >
+                <Link to="/signup">
+                  <span style={{ color: "blue" }}> SignUp Now</span>
+                </Link>
+              </Button>
+            </motion.div>
           </Card.Body>
         </Card>
       </CenteredContainer>
-    </>
+    </motion.div>
   );
 }

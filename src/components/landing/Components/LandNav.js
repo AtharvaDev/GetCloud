@@ -38,6 +38,7 @@ function LandNav() {
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
             animate={{ width: pathname === "/features" ? "50%" : "0%" }}
+            whileHover={{ width: "50%" }}
           />
         </p>
         <p>
@@ -46,6 +47,7 @@ function LandNav() {
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
             animate={{ width: pathname === "/pricing" ? "50%" : "0%" }}
+            whileHover={{ width: "50%" }}
           />
         </p>
         <p>
@@ -57,11 +59,10 @@ function LandNav() {
           />
         </p>
       </div>
-      <div className="LandNav__right">
+      <div className="LandNav__right mr-3">
         <p>
           <Link to="/login">Sign In</Link>
         </p>
-        <p> </p>
       </div>
     </div>
   );

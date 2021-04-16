@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import CenteredContainer from "./CenteredContainer";
 import GlassBg from "../styles/GlassBg";
+import { motion } from "framer-motion";
 
 export default function ForgotPassword() {
   const emailRef = useRef();
@@ -44,25 +45,45 @@ export default function ForgotPassword() {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
-              <Button disabled={loading} className="w-100" type="submit">
-                Reset Password
-              </Button>
+              <motion.div
+                whileHover={{
+                  scale: 1.04,
+                }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Button disabled={loading} className="w-100" type="submit">
+                  Reset Password
+                </Button>
+              </motion.div>
             </Form>
-            <div className="w-100 text-center mt-3 btn btn-light">
-              <Link to="/login">Login</Link>
-            </div>
+
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <div className="w-100 text-center mt-3 btn btn-light">
+                <Link to="/login">Login</Link>
+              </div>
+            </motion.div>
 
             <p className="btn__separator mt-5 mb-4">
-              <span style={{ cursor: "default" }}>Need an account? </span>
+              <span style={{ cursor: "default" }}>
+                Still, need an account?{" "}
+              </span>
             </p>
-            <Button
-              as={Link}
-              to="/signup"
-              variant="Link"
-              className="w-100 text-primary "
+
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{ scale: 0.97 }}
             >
-              Sign Up
-            </Button>
+              <div className="w-100 text-center mt-3 btn btn-light">
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            </motion.div>
           </Card.Body>
         </Card>
       </CenteredContainer>
