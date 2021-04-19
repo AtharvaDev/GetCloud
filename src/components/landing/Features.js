@@ -7,10 +7,13 @@ import features3 from "./lottiefiles/features-3-everywhere.json";
 import LottieAnimation from "./lottiefiles/Lottie";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../styles/animation";
+import slide_dark from "./images/features-slide-dark.png";
+import silde_light from "./images/features-slide-light.png";
+import ReactCompareImage from "react-compare-image";
 
 function Features() {
   return (
-    <div className="Features">
+    <div className="Features ">
       <div className="Features__whiteNav">
         <LandNav />
       </div>
@@ -25,11 +28,11 @@ function Features() {
             <Slide>
               <section
                 id="AutoScrollStart"
-                className="w-100 features__one main_gradient"
+                className="w-100 features__one main_gradient overflow-hidden"
               >
                 <HeadSection
-                  title="Save and share"
-                  desc="Share your files with family, friends and colleagues in one click."
+                  title="Save and Share"
+                  desc="In one click share your files with family, friends and colleagues."
                   leftBtnTxt="Try for free"
                   leftBtnLink="/login"
                   rightBtnTxt="Signup"
@@ -58,7 +61,11 @@ function Features() {
             </Slide>
 
             <Slide>
-              <section id="" className="features__three w-100" style={{}}>
+              <section
+                id=""
+                className="features__three w-100 overflow-hidden"
+                style={{}}
+              >
                 <HeadSection
                   title="Your documents stay with you everywhere"
                   desc="Store your files online in a personal and secure space. Easy access on every one of your devices"
@@ -69,6 +76,21 @@ function Features() {
                   lottie
                   features={features3}
                 />
+              </section>
+            </Slide>
+
+            <Slide>
+              <section className="features__four w-100">
+                <div className="compare__image d-flex flex-column align-items-center ">
+                  <h2 className="m-3">Toggle for Light/Dark Mode</h2>
+                  <ReactCompareImage
+                    leftImage={silde_light}
+                    rightImage={slide_dark}
+                    leftImageLabel="Light Mode"
+                    rightImageLabel="Dark Mode"
+                    hover
+                  />
+                </div>
               </section>
             </Slide>
           </FullPage>

@@ -98,11 +98,22 @@
   color: black;
 }
 
+.compare__image {
+  transform: translateY(4vh);
+  padding-top: 2rem;
+  height: 95vh;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Poppins", sans-serif;
+}
+
 @media only screen and (max-width: 600px) {
-  .features__three .HeadSection__container {
-    transform: translateY(-500px);
-  }
-  .features__two .HeadSection__container {
-    transform: translateY(-300px);
+  .compare__image {
+    box-shadow: none;
+    border-radius: 0px;
+    width: 90%;
+    padding: 0px !important;
+    background: white;
   }
 }

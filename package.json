@@ -25,6 +25,7 @@
     "react-animations": "^1.0.0",
     "react-bootstrap": "^1.5.0",
     "react-clipboard.js": "^2.0.16",
+    "react-compare-image": "^3.1.0",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
     "react-full-page": "^0.1.11",

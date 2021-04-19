@@ -1,0 +1,84 @@
+.aboutUs__one {
+  height: 100vh;
+  width: 100%;
+}
+
+.aboutUs__one__head {
+  padding-top: 6rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .aboutUs__one__head {
+    padding-top: 8rem;
+  }
+}
+
+.aboutUs__one__head h1 {
+  text-align: center;
+}
+
+.aboutUs__one__head p {
+  padding-left: 15vw;
+  padding-right: 15vw;
+  text-align: center;
+  text-justify: auto;
+}
+
+@media only screen and (min-width: 1324px) {
+  .aboutUs__one__head h1 {
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: bold !important;
+  }
+
+  .aboutUs__one__head p {
+    font-size: x-large;
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+}
+
+.aboutUs__wishSvg {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+@media only screen and (min-width: 1324px) {
+  .aboutUs__wishSvg {
+    bottom: 50px;
+    transform: scale(1.2);
+  }
+}
+
+.aboutUs__one__bg {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 40vh;
+  width: 100vw;
+  background-image: url(./images/aboutUs-bg-1.png);
+  background-size: cover;
+}
+
+.aboutUs__two {
+  height: 100%;
+  width: 100vw;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+  perspective: 1000x;
+}
+
+.aboutUs__two h1 {
+  text-align: center;
+}
+
+.aboutUs__two .row {
+  height: auto;
+  margin: auto;
+}

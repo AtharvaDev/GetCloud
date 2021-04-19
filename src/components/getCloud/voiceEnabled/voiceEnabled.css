@@ -7,7 +7,7 @@
   /*  position: fixed;  */
   /* Place the button at the bottom of the page */
   top: 85vh;
-  left: 23vw;
+  left: 25vw;
   z-index: 9999999999; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */

@@ -66,6 +66,7 @@ function Landing() {
                 />
               </motion.div>
             </div>
+            {/* //////////////////////////////////////// */}
             <Wave />
 
             <div className="Landing__svg__one">

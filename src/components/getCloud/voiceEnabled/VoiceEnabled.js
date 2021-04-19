@@ -1,4 +1,9 @@
-import { faEraser, faMagic } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEraser,
+  faMagic,
+  faMicrophoneAlt,
+  faMicrophoneAltSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -104,7 +109,8 @@ const VoiceEnabled = () => {
             >
               <FontAwesomeIcon
                 style={{ color: "white" }}
-                icon={faMagic}
+                icon={faMicrophoneAlt}
+                size="2x"
               ></FontAwesomeIcon>
             </Button>
           </OverlayTrigger>
@@ -119,7 +125,10 @@ const VoiceEnabled = () => {
               onClick={resetTranscript}
               bsPrefix
             >
-              <FontAwesomeIcon icon={faEraser}></FontAwesomeIcon>
+              <FontAwesomeIcon
+                icon={faMicrophoneAltSlash}
+                size="2x"
+              ></FontAwesomeIcon>
             </Button>
           </OverlayTrigger>
         )}

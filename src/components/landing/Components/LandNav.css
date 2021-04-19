@@ -25,6 +25,10 @@
   margin-left: 20px;
 }
 
+.LandNav__logo > p {
+  display: none;
+}
+
 .LandNav__center {
   flex: 1;
   display: flex;
@@ -46,6 +50,28 @@
 
 .LandNav__right > p {
   margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .LandNav {
+    flex-direction: column !important;
+  }
+
+  .LandNav__logo {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .LandNav__logo > p {
+    display: block;
+    margin: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+
+  .LandNav__right{
+    display: none;
+  }
 }
 
 /* ////////////////// Feature Start /////////////// */

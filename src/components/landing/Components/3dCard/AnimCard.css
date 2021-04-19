@@ -1,0 +1,71 @@
+.AnimCard__container {
+  margin-top: 5rem;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: lightblue; */
+  width: 25em;
+  height: 100%;
+}
+
+@media only screen and (min-width: 1324px) {
+  /* Styles */
+  .AnimCard__container {
+    justify-content: flex-end;
+  }
+}
+
+.AnimCard__card {
+  min-height: 55vh;
+  width: 18rem;
+  /* background-color: lightcoral; */
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  padding: 0rem 3rem;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media only screen and (min-width: 1324px) {
+  /* Styles */
+  .AnimCard__card {
+    width: 22rem;
+  }
+}
+
+.AnimCard__top {
+  min-height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: lightcoral; */
+}
+
+.AnimCard__top img {
+  width: 10rem;
+  z-index: 2;
+  transition: all 0.75s ease-out;
+}
+
+.AnimCard__circle {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(245, 70, 66, 0.7),
+    rgba(8, 83, 156, 0.7)
+  );
+}
+
+.AnimCard__info h2 {
+  text-align: center;
+  transition: all 0.75s ease-out;
+  padding-bottom: 4rem;
+  padding-top: 1rem;
+}

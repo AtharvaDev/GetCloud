@@ -30,23 +30,26 @@ function LandNav() {
         <Link id="logo" to="/">
           <img src={DigiSpacelogo} alt="DigiSpacelogo" />
         </Link>
+        <p>
+          <Link to="/login">Sign In</Link>
+        </p>
       </div>
       <div className="LandNav__center">
+        <p>
+          <Link to="/">Home</Link>
+          <Line
+            transition={{ duration: 0.75 }}
+            initial={{ width: "0%" }}
+            animate={{ width: pathname === "/" ? "70%" : "0%" }}
+            whileHover={{ width: "50%" }}
+          />
+        </p>
         <p>
           <Link to="/features">Features</Link>
           <Line
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
-            animate={{ width: pathname === "/features" ? "50%" : "0%" }}
-            whileHover={{ width: "50%" }}
-          />
-        </p>
-        <p>
-          <Link to="/pricing">Pricing</Link>
-          <Line
-            transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/pricing" ? "50%" : "0%" }}
+            animate={{ width: pathname === "/features" ? "70%" : "0%" }}
             whileHover={{ width: "50%" }}
           />
         </p>
@@ -55,7 +58,7 @@ function LandNav() {
           <Line
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
-            animate={{ width: pathname === "/aboutus" ? "50%" : "0%" }}
+            animate={{ width: pathname === "/aboutus" ? "70%" : "0%" }}
           />
         </p>
       </div>
