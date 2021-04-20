@@ -1,8 +1,10 @@
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { springAnim, titileAnimations } from "../../styles/animation";
 import LottieAnimation from "../lottiefiles/Lottie";
 import "./HeadSection.css";
 
@@ -18,25 +20,18 @@ const HeadSection = ({
   features,
 }) => {
   return (
-    <div
-      className="HeadSection"
-      style={
-        {
-          // backgroundImage: `url(${backgroundImg})`,
-        }
-      }
-    >
+    <div className="HeadSection">
       <div className="HeadSection__container">
         <div className="HeadSection__text">
-          <p>{title}</p>
-          <div className="HeadSection__textDesc">
+          <motion.p variants={springAnim}>{title}</motion.p>
+          <motion.div variants={springAnim} className="HeadSection__textDesc">
             <p>{desc}</p>
-          </div>
+          </motion.div>
         </div>
         <div className="HeadSection__lower">
           {/* {console.log(twoBtns)} */}
           {twoBtns === "true" && (
-            <div className="HeadSection__buttons">
+            <div variants={springAnim} className="HeadSection__buttons">
               <Button className="yellow_airplane" as={Link} to={leftBtnLink}>
                 {leftBtnTxt}
               </Button>
@@ -44,9 +39,9 @@ const HeadSection = ({
           )}
         </div>
         {first && (
-          <div className="HeadSection__expand">
+          <motion.div variants={springAnim} className="HeadSection__expand">
             <FontAwesomeIcon icon={faArrowCircleDown}></FontAwesomeIcon>
-          </div>
+          </motion.div>
         )}
         {lottie && (
           <div className="HeadSection__expand">

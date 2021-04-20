@@ -21,9 +21,9 @@ function Wish() {
           gradientTransform="matrix(-1, 0, 0, 1, 1200, 0)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="gray" stop-opacity="0.25" />
-          <stop offset="0.54" stop-color="gray" stop-opacity="0.12" />
-          <stop offset="1" stop-color="gray" stop-opacity="0.1" />
+          <stop offset="0" stopColor="gray" stopOpacity="0.25" />
+          <stop offset="0.54" stopColor="gray" stopOpacity="0.12" />
+          <stop offset="1" stopColor="gray" stopOpacity="0.1" />
         </linearGradient>
       </defs>
       <title></title>

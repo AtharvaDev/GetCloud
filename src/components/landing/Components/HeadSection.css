@@ -35,6 +35,7 @@
   flex: 1;
   color: white;
   text-align: center;
+  cursor: default;
 }
 
 @media only screen and (max-width: 600px) {
@@ -49,6 +50,7 @@
   line-height: 1.5;
   font-weight: 400;
   text-align: center;
+  cursor: default;
 }
 
 .HeadSection__lower {

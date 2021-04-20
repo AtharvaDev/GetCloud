@@ -13,6 +13,7 @@ import PasswordStrengthBar from "react-password-strength-bar";
 import GlassBg from "../styles/GlassBg";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../styles/animation";
+import styled from "styled-components";
 
 export default function Signup() {
   const usernameRef = useRef("");

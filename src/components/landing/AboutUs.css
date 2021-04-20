@@ -5,6 +5,8 @@
 
 .aboutUs__one__head {
   padding-top: 6rem;
+  position: absolute;
+  z-index: 2;
 }
 
 @media only screen and (max-width: 600px) {

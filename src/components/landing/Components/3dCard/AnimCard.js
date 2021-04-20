@@ -10,7 +10,7 @@ function AnimCard({ logo, logo_type }) {
   const [titleTranslateZ, settitleTranslateZ] = useState("0");
   const [imageTranslateZ, setimageTranslateZ] = useState("0");
   //   console.log(xAxis, yAxis);
-  card && console.log(card.style.transform);
+  // card && console.log(card.style.transform);
 
   return (
     <div style={{ perspective: "1000px" }}>

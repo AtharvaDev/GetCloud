@@ -8,7 +8,7 @@ import styled from "styled-components";
 function LandNav() {
   const [show, handleShow] = useState(false);
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
 
   useEffect(() => {
     //it listens to the scroll so when you scroll down app haas to do something

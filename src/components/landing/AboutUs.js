@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LandNav from "./Components/LandNav";
 import "./AboutUs.css";
 import Wish from "../styles/Wish";
@@ -11,14 +11,15 @@ import firebase from "./Components/3dCard/images/firebase.svg";
 import htmlcss from "./Components/3dCard/images/html-css.png";
 import react_bootstrap from "./Components/3dCard/images/React-bootstrap.svg";
 import nodeJs from "./Components/3dCard/images/NodeJs.svg";
-
 import { Col, Container, Row } from "react-bootstrap";
 
 function AboutUs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="w-100 overflow-hidden">
       <LandNav />
-
       <motion.div
         variants={pageAnimation}
         initial="hidden"
@@ -27,11 +28,13 @@ function AboutUs() {
       >
         <section className="aboutUs__one">
           <div className="aboutUs__one__head">
-            <h1 className="">Crafting Beautiful Experience</h1>
-            <p className="">
+            <h1 className="" style={{ cursor: "default" }}>
+              Crafting Beautiful Experience
+            </h1>
+            <p className="" style={{ cursor: "default" }}>
               DigiSpace aims to be the Digital Asset Management platform for all
               sorts of individuals and different types of organisations having
-              scalability in check without compromising data safety.
+              scalability in check without compromising data safety and security.
             </p>
           </div>
 

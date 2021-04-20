@@ -1,40 +1,37 @@
-import firebase from "firebase"
-
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLQS4K332aGyX0Ex3bF-0haVsKTDuj-4A",
   authDomain: "getcloud.firebaseapp.com",
+  // authDomain: "digispace.tech",
   databaseURL: "https://getcloud-default-rtdb.firebaseio.com",
   projectId: "getcloud",
   storageBucket: "getcloud.appspot.com",
   messagingSenderId: "481268351772",
   appId: "1:481268351772:web:8f7a307072a91d525db0d9",
-  measurementId: "G-8SD3QDZ57G"
-
+  measurementId: "G-8SD3QDZ57G",
 };
 
-  const okapp = firebase.initializeApp(firebaseConfig)
-  const firestore = okapp.firestore()
-  export const database ={
-    folders: firestore.collection('folders'),
-    users: firestore.collection('users'),
-    files: firestore.collection('files'),
-    db: firestore,
-    formatDoc: doc => {
-      return {id: doc.id, ...doc.data()}
-    },
-    getCurrrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp
-  }
+const okapp = firebase.initializeApp(firebaseConfig);
+const firestore = okapp.firestore();
+export const database = {
+  folders: firestore.collection("folders"),
+  users: firestore.collection("users"),
+  files: firestore.collection("files"),
+  db: firestore,
+  formatDoc: (doc) => {
+    return { id: doc.id, ...doc.data() };
+  },
+  getCurrrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp,
+};
 
-  export const auth = okapp.auth()
+export const auth = okapp.auth();
 
-  export const provider = new firebase.auth.GoogleAuthProvider();
+export const provider = new firebase.auth.GoogleAuthProvider();
 
-  export const storage = okapp.storage()
+export const storage = okapp.storage();
 
-  export default okapp
-
-
+export default okapp;
 
 // import firebase from "firebase/app"
 // import "firebase/auth"

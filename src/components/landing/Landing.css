@@ -18,6 +18,10 @@
   .Landing__container {
     flex-direction: column;
   }
+  .Landing__container h1 {
+    display: block !important;
+    margin-top: 30px;
+  }
 }
 
 .Landing__container__left {
