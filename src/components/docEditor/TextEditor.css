@@ -1,0 +1,7 @@
+.TextEditor > .quill {
+  min-height: 100vh;
+}
+
+.ql-editor {
+  min-height: 100vh !important;
+}

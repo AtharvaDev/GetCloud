@@ -20,6 +20,7 @@ import { AnimatePresence } from "framer-motion";
 import Features from "./landing/Features";
 import Pricing from "./landing/Pricing";
 import AboutUs from "./landing/AboutUs";
+import TextEditor from "./docEditor/TextEditor";
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,10 @@ function App() {
             <PrivateRoute path="/recent" component={Recent} />
             <PrivateRoute path="/stared" component={Stared} />
             <PrivateRoute path="/trash" component={Trash} />
+
+            {/* docEditor */}
+            <PrivateRoute path="/document" component={TextEditor} />
+            <PrivateRoute path="/document/:documentId" component={TextEditor} />
 
             <PrivateRoute path="/folder/:folderId" component={Home} />
 

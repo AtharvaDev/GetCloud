@@ -1,6 +1,7 @@
 import {
   faClock,
   faCloud,
+  faFileContract,
   faHome,
   faStar,
   faTrash,
@@ -23,12 +24,17 @@ import Recent from "../menuRecent/Recent";
 import VoiceEnabled from "../voiceEnabled/VoiceEnabled";
 import Draggable from "react-draggable";
 import logo from "../../icons/logo1.png";
+import { v4 as uuidV4 } from "uuid";
+import { database } from "../../../firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 function Sidebar() {
   const { globalDarkTheme } = useAuth();
   const { folderId } = useParams();
   const { state = {} } = useLocation();
   const [location, setlocation] = useState("");
+  const [docId, setdocId] = useState(uuidV4());
+  const { currentUser } = useAuth();
 
   let loc = useLocation();
   React.useEffect(() => {
@@ -68,6 +74,37 @@ function Sidebar() {
     window.location.href = "/home";
   }
 
+  const docxRef = database.docx.where("userId", "==", currentUser.uid);
+  const [docxRefSnapshot] = useCollection(docxRef);
+
+  // console.log(docxRefSnapshot);
+  // docxRefSnapshot?.forEach((doc) => {
+  //   console.log(doc.id, " => ", doc.data());
+  // });
+
+  function CreateDocx() {
+    console.log(docId);
+    // history.puch("")
+    const docName = prompt("Enter a name for document");
+
+    if (!docName) return null;
+
+    if (!nameAlreadyExists(docName)) {
+      database.docx.add({
+        folderId: null,
+        name: docName,
+        userId: currentUser.uid,
+        email: currentUser.email,
+        text: "",
+        createdAt: database.getCurrrentTimeStamp(),
+      });
+    }
+    // console.log(docxRefSnapshot);
+  }
+
+  const nameAlreadyExists = (docName) =>
+    !!docxRefSnapshot?.docs.find((name) => name === docName);
+
   return (
     <div
       className={
@@ -75,7 +112,10 @@ function Sidebar() {
       }
     >
       <Draggable>
-        <div className="position-absolute desktop__voiceEnabled" style={{ zIndex: "100" }}>
+        <div
+          className="position-absolute desktop__voiceEnabled"
+          style={{ zIndex: "100" }}
+        >
           <VoiceEnabled />
         </div>
       </Draggable>
@@ -105,6 +145,15 @@ function Sidebar() {
 
             <Nav.Item>
               <AddFileBtn currentFolder={folder}></AddFileBtn>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link className="p-0" variant="none" onClick={CreateDocx}>
+                <SidebarOption
+                  title="Create Text File"
+                  icon={faFileContract}
+                ></SidebarOption>
+              </Nav.Link>
             </Nav.Item>
 
             <>

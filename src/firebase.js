@@ -18,12 +18,14 @@ export const database = {
   folders: firestore.collection("folders"),
   users: firestore.collection("users"),
   files: firestore.collection("files"),
+  docx: firestore.collection("docx"),
   db: firestore,
   formatDoc: (doc) => {
     return { id: doc.id, ...doc.data() };
   },
   getCurrrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp,
 };
+
 
 export const auth = okapp.auth();
 
