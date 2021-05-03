@@ -48,7 +48,7 @@ export const longFade = {
   show: {
     opacity: 1,
     transition: {
-      duration: 1.5,
+      duration: 1,
       ease: "easeOut",
       when: "beforeChildren",
       staggerChildren: 0.1,

@@ -16,11 +16,13 @@
 
 @media only screen and (max-width: 600px) {
   .Landing__container {
-    flex-direction: column;
+    flex-direction: column !important;
+    overflow: hidden;
   }
   .Landing__container h1 {
-    display: block !important;
-    margin-top: 30px;
+    padding-top: 50px;
+    font-size: 2em !important;
+    font-weight: bold;
   }
 }
 
@@ -33,7 +35,7 @@
 @media only screen and (max-width: 600px) {
   .Landing__container__left {
     margin: 0px;
-    margin-top: 7rem;
+    padding-top: 7rem;
     max-width: 90%;
   }
 }

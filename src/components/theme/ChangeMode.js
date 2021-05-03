@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { useAuth } from "../../contexts/AuthContext";
 import { GlobalStyles } from "./global";
@@ -8,23 +9,21 @@ import { useDarkMode } from "./useDarkMode";
 
 function ChangeMode() {
   const { setGlobalDarkTheme, globalDarkTheme } = useAuth();
-
   const [theme, toggleTheme, componentMounted] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   if (!componentMounted) {
     return <div />;
   }
+
   function changeTheme() {
-    // console.log(theme);
     if (theme === "light") {
-      setGlobalDarkTheme(false)
+      setGlobalDarkTheme(false);
       // console.log(globalDarkTheme)
     } else {
       // console.log("dark is true");
-      setGlobalDarkTheme(true)
+      setGlobalDarkTheme(true);
       // console.log(globalDarkTheme)
-
     }
   }
 

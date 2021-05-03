@@ -2,15 +2,18 @@ import { faIcons, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Form, FormControl, InputGroup, Nav, Navbar } from "react-bootstrap";
+import Draggable from "react-draggable";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useAuth } from "../../contexts/AuthContext";
 import ChangeMode from "../theme/ChangeMode";
 import "./navbar.css";
 import Search from "./Search";
+import VoiceEnabled from "./voiceEnabled/VoiceEnabled";
 
 function NavbarComponent() {
   const { globalDarkTheme, currentUser } = useAuth();
   const [loading, setLoading] = useState(true);
+  var x = window.matchMedia("(max-width: 700px)");
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
@@ -25,8 +28,15 @@ function NavbarComponent() {
             : "NavbarComponent bg-transparent text-dark pt-10"
         }
       >
-          
-        <Search/>
+        <Search />
+        <>
+          <div
+            className="position-absolute resp__voiceEnabled"
+            style={{ zIndex: "100", display: "none" }}
+          >
+            <VoiceEnabled />
+          </div>
+        </>
 
         {loading === true ? (
           <SkeletonTheme

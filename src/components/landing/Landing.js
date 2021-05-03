@@ -139,7 +139,6 @@ function Landing() {
               variants={fade}
               animate={controls}
               initial="hidden"
-              
               className="Landing__container"
               style={{ flexDirection: "row-reverse", backgroundColor: "black" }}
             >

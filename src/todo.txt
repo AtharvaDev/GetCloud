@@ -14,9 +14,9 @@
     (https://youtu.be/TpwpAYi-p2w)              n/a.
 12. share files                                 done       
 13. File upload sound ----
-14. Home page ----
+14. Home page ----                              done
 15. home image slider ----
-16. Add typist to homepage --- 
-    (https://www.npmjs.com/package/react-typist)
+16. Add typist to homepage ---                  done
+    (https://www.npmjs.com/package/react-typist)n/a.
 17. Add react file icon 
     (https://www.npmjs.com/package/react-file-icon)

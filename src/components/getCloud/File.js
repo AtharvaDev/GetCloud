@@ -108,7 +108,7 @@ export default function File({ file }) {
   }
 
   useEffect(() => {
-    console.log(file);
+    // console.log(file);
   }, []);
 
   function handleFileClick() {}
